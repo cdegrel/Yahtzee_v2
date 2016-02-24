@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="563.0" prefWidth="1000.0" stylesheets="@BasicApplication.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Yahtzee.view.InterfaceController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu id="file_menu" mnemonicParsing="false" text="File">
+          <items>
+                  <Menu mnemonicParsing="false" text="Nouvelle partie">
+                    <items>
+                        <MenuItem fx:id="np_1_joueur" mnemonicParsing="false" onAction="#menu" text="1 Joueur vs IA" />
+                      <MenuItem fx:id="np_2_joueur" mnemonicParsing="false" onAction="#menu" text="2 Joueurs" />
+                        <MenuItem fx:id="np_3_joueur" mnemonicParsing="false" onAction="#menu" text="3 Joueurs" />
+                        <MenuItem fx:id="np_4_joueur" mnemonicParsing="false" onAction="#menu" text="4 Joueurs" />
+                        <MenuItem fx:id="np_5_joueur" mnemonicParsing="false" onAction="#menu" text="5 Joueurs" />
+                        <MenuItem fx:id="np_6_joueur" mnemonicParsing="false" onAction="#menu" text="6 Joueurs" />
+                    </items>
+                  </Menu>
+            <MenuItem fx:id="open" mnemonicParsing="false" onAction="#menu" text="Ouvrir une partie..." />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="save" mnemonicParsing="false" onAction="#menu" text="Sauvegarder la partie sous..." />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#menu" text="Quitter" />
+          </items>
+        </Menu>
+        <Menu id="aide_menu" mnemonicParsing="false" text="Aide">
+          <items>
+            <MenuItem fx:id="about" mnemonicParsing="false" onAction="#menu" text="A propos" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <GridPane prefHeight="375.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="293.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="82.0" minHeight="-Infinity" prefHeight="82.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <!--<Tab text="Joueur 1">
+                           <content>
+							   <fx:include source="Tab.fxml" />
+                           </content>
+                        </Tab>-->
+                    </tabs>
+                  </TabPane>
+                  <GridPane fx:id="tab_des" GridPane.rowIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="90.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="67.0" minHeight="50.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ToggleButton fx:id="de_1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionPressed_Des" onMousePressed="#mousePressed_Des" prefHeight="50.0" prefWidth="50.0" text="ToggleButton" textFill="TRANSPARENT" GridPane.rowIndex="1" />
+                        <ToggleButton fx:id="de_2" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionPressed_Des" onMousePressed="#mousePressed_Des" prefHeight="50.0" prefWidth="50.0" text="ToggleButton" textFill="TRANSPARENT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ToggleButton fx:id="de_3" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionPressed_Des" onMousePressed="#mousePressed_Des" prefHeight="50.0" prefWidth="50.0" text="ToggleButton" textFill="TRANSPARENT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <ToggleButton fx:id="de_4" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionPressed_Des" onMousePressed="#mousePressed_Des" prefHeight="50.0" prefWidth="50.0" text="ToggleButton" textFill="TRANSPARENT" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <ToggleButton fx:id="de_5" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionPressed_Des" onMousePressed="#mousePressed_Des" prefHeight="50.0" prefWidth="50.0" text="ToggleButton" textFill="TRANSPARENT" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Button fx:id="lancer" mnemonicParsing="false" onAction="#lancerDes_action" prefWidth="90.0" text="Lancer" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <ImageView fx:id="fake_de_6" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@../img/E.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="fake_de_7" fitHeight="50.0" fitWidth="50.0" layoutX="535.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@../img/E.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

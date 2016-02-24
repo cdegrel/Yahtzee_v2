@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="10.0" layoutY="13.0" prefHeight="87.0" prefWidth="485.0">
+         <children>
+            <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Y.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="68.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/A.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="68.0" layoutX="65.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/H.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="68.0" layoutX="120.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/T.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="68.0" layoutX="175.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Z.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="68.0" layoutX="230.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/E.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="68.0" layoutX="285.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/E.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Text layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeu du Yahtzee créé par : Nicolas Rossdeusch, Valentin Bonnal &amp; Cies" wrappingWidth="385.13671875" />
+   </children>
+</Pane>
