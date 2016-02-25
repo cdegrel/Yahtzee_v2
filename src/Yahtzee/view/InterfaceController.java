@@ -117,7 +117,6 @@ public class InterfaceController {
 		}
 		if (model.getDes().getLancer() == 3) {
 			lancer.setDisable(true);
-			model.getDes().initLancer();
 		}
 	}
 
