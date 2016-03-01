@@ -151,7 +151,11 @@ public class InterfaceController {
 			model.getJoueurs().add(new IA(tab_ia, 1));
 		}
 		for (Joueur joueur : model.getJoueurs()) {
-			joueur.getController().init_data_after_JoueurList();
+			if (!joueur.isIA()) {
+				joueur.getJoueurController().init_data_after_JoueurList();
+			} else {
+				((IA) joueur).getIAController().init_data_after_JoueurList();
+			}
 		}
 	}
 

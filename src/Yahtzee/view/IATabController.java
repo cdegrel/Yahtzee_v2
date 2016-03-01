@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class TabController {
+public class IATabController {
 
 	@FXML
 	private GridPane tab_somme = new GridPane();        // Grille contenant boutons/labels sommes
@@ -104,7 +104,9 @@ public class TabController {
 	void nextJoueur() {
 		interfaceController.init_des();
 		model.joueurJoueNext();
-		model.getJoueurs().get(model.getJoueurJoue()).getController().activeNotPlayedButtons();
+		if (!model.getJoueurs().get(model.getJoueurJoue()).isIA()) {
+			model.getJoueurs().get(model.getJoueurJoue()).getJoueurController().activeNotPlayedButtons();
+		}
 		interfaceController.basculeTab(model.getJoueurJoue());
 	}
 

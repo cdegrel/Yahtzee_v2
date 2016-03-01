@@ -1,9 +1,10 @@
 package Yahtzee;
 
 import Yahtzee.model.Model;
+import Yahtzee.view.IATabController;
 import Yahtzee.view.InterfaceController;
 import Yahtzee.view.PartieFinieController;
-import Yahtzee.view.TabController;
+import Yahtzee.view.JoueurTabController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -49,13 +50,27 @@ public class Main extends Application {
 		}
 	}
 
-	public static TabController initTabLayout(Tab tab, int numJoueur) {
+	public static JoueurTabController initTabLayout(Tab tab, int numJoueur) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/Tab.fxml"));
+			loader.setLocation(Main.class.getResource("view/TabJoueur.fxml"));
 			tab.setContent((Node) loader.load());
-			TabController controller = loader.getController();
+			JoueurTabController controller = loader.getController();
 			controller.init_data(model, numJoueur, interfaceController);
+			return controller;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static IATabController initTabIALayout(Tab tab, int numIA) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/TabIA.fxml"));
+			tab.setContent((Node) loader.load());
+			IATabController controller = loader.getController();
+			controller.init_data(model, numIA, interfaceController);
 			return controller;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -85,7 +100,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/PopUp_partieFinie.fxml"));
 			Pane root = loader.load();
-			PartieFinieController partieFinieController= loader.getController();
+			PartieFinieController partieFinieController = loader.getController();
 			partieFinieController.init_data(model);
 			stage.setTitle("Partie Terminée");
 			stage.setScene(new Scene(root));

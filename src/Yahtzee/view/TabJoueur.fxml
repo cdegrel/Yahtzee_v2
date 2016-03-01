@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@BasicApplication.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Yahtzee.view.TabController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@BasicApplication.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Yahtzee.view.JoueurTabController">
    <children>
       <GridPane layoutX="78.0" layoutY="52.0" prefHeight="264.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>

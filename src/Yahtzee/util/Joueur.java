@@ -1,7 +1,7 @@
 package Yahtzee.util;
 
 import Yahtzee.Main;
-import Yahtzee.view.TabController;
+import Yahtzee.view.JoueurTabController;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
@@ -10,20 +10,28 @@ public class Joueur {
 	protected int scoreSomme;
 	protected int scoreSpecial;
 	protected int scoreTotal;
-	protected TabController controller;
+	protected JoueurTabController controller;
 	private Label[][] labels_somme;
 	private Label[][] labels_special;
 
-	public Joueur(Tab tab_joueur, int numJoueur) {
+	public Joueur(Tab tab_joueur, int numJoueur, boolean ia) {
 		this.numJoueur = numJoueur;
-		controller = Main.initTabLayout(tab_joueur, numJoueur);
+		if (!ia) controller = Main.initTabLayout(tab_joueur, numJoueur);
 		scoreSomme = 0;
 		scoreSpecial = 0;
 		scoreTotal = 0;
 	}
 
-	public TabController getController() {
+	public Joueur(Tab tab_joueur, int numJoueur) {
+		this(tab_joueur, numJoueur, false);
+	}
+
+	public JoueurTabController getJoueurController() {
 		return controller;
+	}
+
+	public boolean isIA() {
+		return false;
 	}
 
 	public int getNumJoueur() {
