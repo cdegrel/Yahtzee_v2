@@ -49,6 +49,8 @@ public class IA extends Joueur {
 			this.setScoreSomme(model.carre(de.DesGen));
 			this.setscoreTotal(model.carre(de.DesGen));
 
+		}else{
+			
 		}
 
 
