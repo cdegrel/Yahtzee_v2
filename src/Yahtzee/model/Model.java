@@ -126,6 +126,7 @@ public class Model {
 
 	public int petiteSuite(int t[]) {
 		int result = 0;
+		Arrays.sort(t);
 
 		for (int i = 0; i < t.length - 1; i++) {
 			if (t[i] == t[i + 1]) {
