@@ -43,6 +43,10 @@ public class IA extends Joueur {
 	}
 
 	public void jouer() {
+		int score=0;
+		int nouvScore=0;
+		int indice = 0;
+
 		de.jette();
 		Arrays.sort(de.DesGen);
 
@@ -84,9 +88,22 @@ public class IA extends Joueur {
 				this.setscoreTotal(model.carre(de.DesGen));
 				listCoup.remove("brelan");
 
-			} else {
+			} else if(listCoup.contains("un")||listCoup.contains("deux")||listCoup.contains("trois")//il me faut la methode pour le calcule du score
+					||listCoup.contains("quatre")||listCoup.contains("cinq")||listCoup.contains("six")){
 
-			}
+				for (int i = 0; i < de.DesGen.length; i++) {
+
+					nouvScore = de.DesGen[i];
+
+						if(nouvScore>score){
+							score = nouvScore;
+							indice = i;
+						}
+
+				}
+				listCoup.remove(indice);
+
+			}else{System.out.println("Ia ne sait plus quoi faire");}
 
 		}
 	}

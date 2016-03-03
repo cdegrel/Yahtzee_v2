@@ -116,8 +116,10 @@ public class InterfaceController {
 			model.getDes().incremLanceNum();
 		}
 		if (model.getDes().getLancer() == 3) {
+			//if(model.ia.isIA())
 			lancer.setDisable(true);
 		}
+
 	}
 
 	/**

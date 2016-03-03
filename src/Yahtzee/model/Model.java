@@ -1,6 +1,7 @@
 package Yahtzee.model;
 
 import Yahtzee.util.De;
+import Yahtzee.util.IA;
 import Yahtzee.util.Joueur;
 import javafx.scene.control.ToggleButton;
 
@@ -11,6 +12,7 @@ import java.util.Arrays;
 
 public class Model {
 	protected ArrayList<Joueur> joueurs;
+	protected IA ia;
 	protected De Des;
 	int joueurJoue;
 
@@ -18,6 +20,7 @@ public class Model {
 		joueurs = new ArrayList<>();
 		Des = new De();
 		initJoueurJoue();
+		//ia = new IA(il prend quoi comme paramettre?????);
 	}
 
 	public De getDes() {
