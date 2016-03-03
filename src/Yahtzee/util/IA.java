@@ -29,7 +29,7 @@ public class IA extends Joueur {
 		listCoup.add("brelan");listCoup.add("carre");
 		listCoup.add("full");listCoup.add("petiteSuite");
 		listCoup.add("grandeSuite");listCoup.add("yahtzee");
-		
+
 	}
 
 	public IATabController getIAController() {
@@ -49,9 +49,9 @@ public class IA extends Joueur {
 
 			if (listCoup.contains("yahtzee") && model.yahtzee(de.DesGen) == 50) {
 
-				this.setScoreSomme(50);//question con mest est ce que ça sa marche pour que l'IA est un score qui s'affiche?
+				this.setScoreSomme(50);//question con mais est ce que ça sa marche pour que l'IA est un score qui s'affiche?
 				this.setscoreTotal(50);
-				listCoup.remove("yahtzee");
+				listCoup.remove("yahtzee");//on retire de la liste
 
 			} else if (listCoup.contains("grandeSuite") && model.grandeSuite(de.DesGen) == 40) {
 
@@ -126,6 +126,7 @@ public class IA extends Joueur {
 					this.setScoreSomme(model.calculBasic(4,de.DesGen));
 					this.setscoreTotal(model.calculBasic(4,de.DesGen));
 					listCoup.remove(4);}
+				
 				if(de.DesGen[0] == 5&&//verif des 5
 						de.DesGen[0] == de.DesGen[1]&&
 						de.DesGen[1] == de.DesGen[2]&&
