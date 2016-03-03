@@ -18,7 +18,7 @@ public class IA extends Joueur {
 	public IA(Tab tab, int numIA) {
 		super(tab, numIA, true);
 		controller = Main.initTabIALayout(tab, numIA);
-		listCoup = new ArrayList<>();
+		listCoup = new ArrayList<>();//(liste comprenant toutes les combi
 		listCoup.add("chance");
 		listCoup.add("un");
 		listCoup.add("deux");
@@ -28,10 +28,8 @@ public class IA extends Joueur {
 		listCoup.add("six");
 		listCoup.add("brelan");listCoup.add("carre");
 		listCoup.add("full");listCoup.add("petiteSuite");
-		listCoup.add("grandeSuite");listCoup.add("yahtzee");listCoup.add("chance");
-
-
-
+		listCoup.add("grandeSuite");listCoup.add("yahtzee");
+		
 	}
 
 	public IATabController getIAController() {
@@ -43,18 +41,15 @@ public class IA extends Joueur {
 	}
 
 	public void jouer() {
-		int score=0;
-		int nouvScore=0;
-		int indice = 0;
 
 		de.jette();
 		Arrays.sort(de.DesGen);
-
-		if(listCoup.size()!=0) {
+	//verif des coupd bon d'est le premier lancer
+		if(listCoup.size()!=0) {//verif si la liste est vide ou pas
 
 			if (listCoup.contains("yahtzee") && model.yahtzee(de.DesGen) == 50) {
 
-				this.setScoreSomme(50);
+				this.setScoreSomme(50);//question con mest est ce que ça sa marche pour que l'IA est un score qui s'affiche?
 				this.setscoreTotal(50);
 				listCoup.remove("yahtzee");
 
@@ -92,7 +87,7 @@ public class IA extends Joueur {
 					||listCoup.contains("quatre")||listCoup.contains("cinq")||listCoup.contains("six")){
 
 
-					if(de.DesGen[0] == 1&&
+					if(de.DesGen[0] == 1&&//verif des 1
 							de.DesGen[0] == de.DesGen[1]&&
 							de.DesGen[1] == de.DesGen[2]&&
 							de.DesGen[2] == de.DesGen[3]&&
@@ -102,7 +97,7 @@ public class IA extends Joueur {
 							this.setscoreTotal(model.calculBasic(1,de.DesGen));
 							listCoup.remove(1);}
 
-				if(de.DesGen[0] == 2&&
+				if(de.DesGen[0] == 2&&//verif des 2
 						de.DesGen[0] == de.DesGen[1]&&
 						de.DesGen[1] == de.DesGen[2]&&
 						de.DesGen[2] == de.DesGen[3]&&
@@ -112,7 +107,7 @@ public class IA extends Joueur {
 					this.setscoreTotal(model.calculBasic(2,de.DesGen));
 					listCoup.remove(2);}
 
-				if(de.DesGen[0] == 3&&
+				if(de.DesGen[0] == 3&&//verif des 3
 						de.DesGen[0] == de.DesGen[1]&&
 						de.DesGen[1] == de.DesGen[2]&&
 						de.DesGen[2] == de.DesGen[3]&&
@@ -122,7 +117,7 @@ public class IA extends Joueur {
 					this.setscoreTotal(model.calculBasic(3,de.DesGen));
 					listCoup.remove(3);}
 
-				if(de.DesGen[0] == 4&&
+				if(de.DesGen[0] == 4&&//verif des 4
 						de.DesGen[0] == de.DesGen[1]&&
 						de.DesGen[1] == de.DesGen[2]&&
 						de.DesGen[2] == de.DesGen[3]&&
@@ -131,7 +126,7 @@ public class IA extends Joueur {
 					this.setScoreSomme(model.calculBasic(4,de.DesGen));
 					this.setscoreTotal(model.calculBasic(4,de.DesGen));
 					listCoup.remove(4);}
-				if(de.DesGen[0] == 5&&
+				if(de.DesGen[0] == 5&&//verif des 5
 						de.DesGen[0] == de.DesGen[1]&&
 						de.DesGen[1] == de.DesGen[2]&&
 						de.DesGen[2] == de.DesGen[3]&&
@@ -141,7 +136,7 @@ public class IA extends Joueur {
 					this.setscoreTotal(model.calculBasic(5,de.DesGen));
 					listCoup.remove(5);}
 
-				if(de.DesGen[0] == 6&&
+				if(de.DesGen[0] == 6&&//verif des 6
 						de.DesGen[0] == de.DesGen[1]&&
 						de.DesGen[1] == de.DesGen[2]&&
 						de.DesGen[2] == de.DesGen[3]&&
