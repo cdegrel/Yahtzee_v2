@@ -53,7 +53,16 @@ public class Model {
 			initJoueurJoue();
 		}
 	}
+	public int calculBasic(int i, int tab[]){
+		int somme= 0;
+		for (int j = 0; j <tab.length ; j++) {
+			if(tab[j]==i){
+				somme = somme + tab[j];
+			}
+		}
+		return somme;
 
+	}
 	public int joueSomme(int valeur, ToggleButton[] des) {
 		int nbDes = 0;
 		for (ToggleButton de : des) {

@@ -91,17 +91,65 @@ public class IA extends Joueur {
 			} else if(listCoup.contains("un")||listCoup.contains("deux")||listCoup.contains("trois")//il me faut la methode pour le calcule du score
 					||listCoup.contains("quatre")||listCoup.contains("cinq")||listCoup.contains("six")){
 
-				for (int i = 0; i < de.DesGen.length; i++) {
 
-					nouvScore = de.DesGen[i];
+					if(de.DesGen[0] == 1&&
+							de.DesGen[0] == de.DesGen[1]&&
+							de.DesGen[1] == de.DesGen[2]&&
+							de.DesGen[2] == de.DesGen[3]&&
+							de.DesGen[3] == de.DesGen[4]){
 
-						if(nouvScore>score){
-							score = nouvScore;
-							indice = i;
-						}
+							this.setScoreSomme(model.calculBasic(1,de.DesGen));
+							this.setscoreTotal(model.calculBasic(1,de.DesGen));
+							listCoup.remove(1);}
 
-				}
-				listCoup.remove(indice);
+				if(de.DesGen[0] == 2&&
+						de.DesGen[0] == de.DesGen[1]&&
+						de.DesGen[1] == de.DesGen[2]&&
+						de.DesGen[2] == de.DesGen[3]&&
+						de.DesGen[3] == de.DesGen[4]){
+
+					this.setScoreSomme(model.calculBasic(2,de.DesGen));
+					this.setscoreTotal(model.calculBasic(2,de.DesGen));
+					listCoup.remove(2);}
+
+				if(de.DesGen[0] == 3&&
+						de.DesGen[0] == de.DesGen[1]&&
+						de.DesGen[1] == de.DesGen[2]&&
+						de.DesGen[2] == de.DesGen[3]&&
+						de.DesGen[3] == de.DesGen[4]){
+
+					this.setScoreSomme(model.calculBasic(3,de.DesGen));
+					this.setscoreTotal(model.calculBasic(3,de.DesGen));
+					listCoup.remove(3);}
+
+				if(de.DesGen[0] == 4&&
+						de.DesGen[0] == de.DesGen[1]&&
+						de.DesGen[1] == de.DesGen[2]&&
+						de.DesGen[2] == de.DesGen[3]&&
+						de.DesGen[3] == de.DesGen[4]){
+
+					this.setScoreSomme(model.calculBasic(4,de.DesGen));
+					this.setscoreTotal(model.calculBasic(4,de.DesGen));
+					listCoup.remove(4);}
+				if(de.DesGen[0] == 5&&
+						de.DesGen[0] == de.DesGen[1]&&
+						de.DesGen[1] == de.DesGen[2]&&
+						de.DesGen[2] == de.DesGen[3]&&
+						de.DesGen[3] == de.DesGen[4]){
+
+					this.setScoreSomme(model.calculBasic(5,de.DesGen));
+					this.setscoreTotal(model.calculBasic(5,de.DesGen));
+					listCoup.remove(5);}
+
+				if(de.DesGen[0] == 6&&
+						de.DesGen[0] == de.DesGen[1]&&
+						de.DesGen[1] == de.DesGen[2]&&
+						de.DesGen[2] == de.DesGen[3]&&
+						de.DesGen[3] == de.DesGen[4]){
+
+					this.setScoreSomme(model.calculBasic(6,de.DesGen));
+					this.setscoreTotal(model.calculBasic(6,de.DesGen));
+					listCoup.remove(6);}
 
 			}else{System.out.println("Ia ne sait plus quoi faire");}
 
