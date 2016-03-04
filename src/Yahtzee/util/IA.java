@@ -126,7 +126,7 @@ public class IA extends Joueur {
 					this.setScoreSomme(model.calculBasic(4,de.DesGen));
 					this.setscoreTotal(model.calculBasic(4,de.DesGen));
 					listCoup.remove(4);}
-				
+
 				if(de.DesGen[0] == 5&&//verif des 5
 						de.DesGen[0] == de.DesGen[1]&&
 						de.DesGen[1] == de.DesGen[2]&&

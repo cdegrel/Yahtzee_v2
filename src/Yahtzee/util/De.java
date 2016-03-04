@@ -19,6 +19,8 @@ public class De {
 		}
 	}
 
+	public int[] getDe(){return DesGen;}
+
 	public int getSortie(int i) {
 		return DesGen[i];
 	}
