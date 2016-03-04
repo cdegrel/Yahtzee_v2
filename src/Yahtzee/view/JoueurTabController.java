@@ -89,8 +89,11 @@ public class JoueurTabController {
 			Total_score();
 			disableAllButtons();
 
+
+
 			if (!verif_partieFinie()) {
 				nextJoueur();
+
 			}
 		}
 	}

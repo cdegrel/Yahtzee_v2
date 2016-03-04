@@ -354,35 +354,35 @@ public class IATabController {
 
 			if (listCoup.contains("yahtzee") && model.yahtzee(model.getDes().getDe()) == 50) {
 
-				define_pts(50,5,true);
+				define_pts(50,6,true);
 				listCoup.remove("yahtzee");//on retire de la liste
 
 			} else if (listCoup.contains("grandeSuite") && model.grandeSuite(model.getDes().getDe()) == 40) {
 
-				define_pts(40,4,true);
+				define_pts(40,5,true);
 				listCoup.remove("grandeSuite");
 
 			} else if (listCoup.contains("petiteSuite") && model.petiteSuite(model.getDes().getDe()) == 30) {
 
-				define_pts(30,3,true);
+				define_pts(30,4,true);
 				listCoup.remove("petiteSuite");
 
 			} else if (listCoup.contains("full") && model.full(model.getDes().getDe()) == 25) {
 
-				define_pts(25,2,true);
+				define_pts(25,3,true);
 				listCoup.remove("full");
 
 			} else if (listCoup.contains("carre") && model.carre(model.getDes().getDe()) != 0) {
 
-				define_pts(model.carre(model.getDes().getDe()),1,true);
+				define_pts(model.carre(model.getDes().getDe()),2,true);
 				listCoup.remove("carre");
 
-			}/* else if (listCoup.contains("brelan") && model.brelan(model.getDes().getDe()) != 0) {
+			} else if (listCoup.contains("brelan") && model.brelan(model.getDes().getDe()) != 0) {
 
-				define_pts(50,8,true);
+				define_pts(model.brelan(model.getDes().getDe()),1,true);
 				listCoup.remove("brelan");
 
-			}*/ else if(listCoup.contains("un")||listCoup.contains("deux")||listCoup.contains("trois")//il me faut la methode pour le calcule du score
+			} else if(listCoup.contains("un")||listCoup.contains("deux")||listCoup.contains("trois")//il me faut la methode pour le calcule du score
 					||listCoup.contains("quatre")||listCoup.contains("cinq")||listCoup.contains("six")){
 
 
@@ -392,7 +392,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					//define_pts(50,8,false);
+					define_pts(model.calculBasic(3,model.getDes().getDe()),1,false);
 					listCoup.remove(1);}
 
 				if(model.getDes().getSortie(0) == 2&&//verif des 2
@@ -401,7 +401,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(2,model.getDes().getDe()),1,false);
+					define_pts(model.calculBasic(2,model.getDes().getDe()),2,false);
 					listCoup.remove(2);}
 
 				if(model.getDes().getSortie(0) == 3&&//verif des 3
@@ -410,7 +410,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(3,model.getDes().getDe()),2,false);
+					define_pts(model.calculBasic(3,model.getDes().getDe()),3,false);
 					listCoup.remove(3);}
 
 				if(model.getDes().getSortie(0) == 4&&//verif des 4
@@ -419,7 +419,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(4,model.getDes().getDe()),3,false);
+					define_pts(model.calculBasic(4,model.getDes().getDe()),4,false);
 					listCoup.remove(4);}
 
 				if(model.getDes().getSortie(0) == 5&&//verif des 5
@@ -428,7 +428,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(4,model.getDes().getDe()),4,false);
+					define_pts(model.calculBasic(4,model.getDes().getDe()),5,false);
 					listCoup.remove(5);}
 
 				if(model.getDes().getSortie(0) == 6&&//verif des 6
@@ -437,7 +437,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(6,model.getDes().getDe()),5,false);
+					define_pts(model.calculBasic(6,model.getDes().getDe()),6,false);
 					listCoup.remove(6);}
 
 			}else{System.out.println("Ia ne sait plus quoi faire");}
