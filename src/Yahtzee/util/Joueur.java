@@ -5,14 +5,18 @@ import Yahtzee.view.JoueurTabController;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
-public class Joueur {
+import java.io.Serializable;
+
+public class Joueur implements Serializable {
 	protected int numJoueur;
 	protected int scoreSomme;
 	protected int scoreSpecial;
 	protected int scoreTotal;
-	protected JoueurTabController controller;
-	private Label[][] labels_somme;
-	private Label[][] labels_special;
+	protected transient JoueurTabController controller;
+	private transient Label[][] labels_somme;
+	private transient Label[][] labels_special;
+	public String[][] Sendlabels_somme;
+	public String[][] Sendlabels_special;
 
 	public Joueur(Tab tab_joueur, int numJoueur, boolean ia) {
 		this.numJoueur = numJoueur;
@@ -20,6 +24,32 @@ public class Joueur {
 		scoreSomme = 0;
 		scoreSpecial = 0;
 		scoreTotal = 0;
+	}
+
+	public void appliLabelsToSend(String[][] Receive, boolean col) {
+		Label[][] labels = !col ? labels_somme : labels_special;
+
+		for (int i = 0; i < labels.length; i++) {
+			for (int j = 0; j < labels[i].length; j++) {
+				labels[i][j].setText(Receive[i][j]);
+			}
+		}
+	}
+
+	public void convertLabelsToSend(boolean col) {
+		Label[][] labels = !col ? labels_somme : labels_special;
+		String[][] send = !col ? Sendlabels_somme : Sendlabels_special;
+
+		for (int i = 0; i < labels.length; i++) {
+			for (int j = 0; j < labels[i].length; j++) {
+				send[i][j] = labels[i][j].getText();
+			}
+		}
+	}
+
+	public void initLabelsToSend() {
+		Sendlabels_somme = new String[labels_somme.length][9];
+		Sendlabels_special = new String[labels_special.length][9];
 	}
 
 	public Joueur(Tab tab_joueur, int numJoueur) {

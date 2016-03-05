@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Yahtzee.view.configServerController">
+   <children>
+      <Label layoutX="7.0" prefHeight="36.0" prefWidth="398.0" text="Configuration du mode multiDistant :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="15.0" layoutY="37.0" prefHeight="36.0" prefWidth="181.0" text="IP :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="206.0" layoutY="37.0" prefHeight="36.0" prefWidth="202.0" text="Port :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="74.0" prefHeight="36.0" prefWidth="181.0" text="Joueurs :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ip" layoutX="42.0" layoutY="42.0" />
+      <TextField fx:id="port" layoutX="252.0" layoutY="42.0" />
+      <Button layoutX="301.0" layoutY="80.0" mnemonicParsing="false" onAction="#valide" prefHeight="25.0" prefWidth="79.0" text="Valider" />
+      <ChoiceBox fx:id="nbJoueurs" layoutX="101.0" layoutY="79.0" prefHeight="25.0" prefWidth="64.0" />
+   </children>
+</Pane>

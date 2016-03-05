@@ -53,6 +53,7 @@ public class JoueurTabController {
 		joueur = model.getJoueurs().get(numJoueur);
 		joueur.setLabels_somme(createLabel(tab_somme, false, model.getNbJoueurs()));
 		joueur.setLabels_special(createLabel(tab_special, true, model.getNbJoueurs()));
+		if (model.isMultiDistant()) joueur.initLabelsToSend();
 	}
 
 	/**
@@ -89,11 +90,18 @@ public class JoueurTabController {
 			Total_score();
 			disableAllButtons();
 
-
-
-			if (!verif_partieFinie()) {
+			if (!model.isMultiDistant() && !verif_partieFinie()) {
 				nextJoueur();
+			}
 
+			if (model.isMultiDistant()) {
+				for (Joueur joueur : model.getJoueurs()) {
+					joueur.convertLabelsToSend(false);
+					joueur.convertLabelsToSend(true);
+				}
+				interfaceController.getThread().aJoue();
+				// ------VERIFIER LA FIN DE PARTIE AVEC LE MULTIDISTANT--------VERIFIER LA FIN DE PARTIE AVEC LE MULTIDISTANT-------VERIFIER LA FIN DE PARTIE AVEC LE MULTIDISTANT
+				// et avant de faire jouer un autre joueur (juste après la récup de l'objet)
 			}
 		}
 	}
@@ -119,33 +127,31 @@ public class JoueurTabController {
 	 *
 	 * @return type boolean
 	 */
-	boolean verif_partieFinie() {
-		for (int i = 0; i < joueur.getLabels_somme()[numJoueur].length - 3; i++) {
-			if (joueur.label_isNotPlayed(i + 1, false)) {
-				return false;
+	public boolean verif_partieFinie() {
+		for (Joueur joueur : model.getJoueurs()) {
+			for (int i = 0; i < joueur.getLabels_somme()[numJoueur].length - 3; i++) {
+				if (joueur.label_isNotPlayed(i + 1, false)) {
+					return false;
+				}
+			}
+
+			for (int i = 0; i < joueur.getLabels_special()[numJoueur].length - 2; i++) {
+				if (joueur.label_isNotPlayed(i + 1, true)) {
+					return false;
+				}
 			}
 		}
 
-		for (int i = 0; i < joueur.getLabels_special()[numJoueur].length - 2; i++) {
-			if (joueur.label_isNotPlayed(i + 1, true)) {
-				return false;
-			}
-		}
-
-		if (numJoueur == model.getNbJoueurs() - 1) {
-			interfaceController.fin_des();
-			Main.PopUp_partieFinie(model);
-			return true;
-		} else {
-			return false;
-		}
+		interfaceController.fin_des();
+		Main.PopUp_partieFinie(model);
+		return true;
 	}
 
 	/**
 	 * Mise à jour du score Total
 	 * (calcul/sauvegarde/affichage)
 	 */
-	void Total_score() {
+	public void Total_score() {
 		joueur.setscoreTotal(joueur.getScoreSomme() + joueur.getscoreSpecial());
 		Total_final_pts.setText(Integer.toString(joueur.getscoreTotal()) + " pts");
 	}
@@ -154,12 +160,15 @@ public class JoueurTabController {
 	 * Calcul est met à jour en conséquence
 	 * le sous-total de la partie spécial
 	 */
-	void Special_SousTotal() {
+	public void Special_SousTotal() {
+		boolean uneCasePleine = false;
 		int i = 0, score = 0;
+
 		for (Label label : joueur.getLabels_special()[numJoueur]) {
 			if (!joueur.label_isNotPlayed(i + 1, true) && i != 8) {
 				score = score + Integer.parseInt(label.getText());
-			} else if (i == 8) {
+				uneCasePleine = true;
+			} else if (i == 8 && uneCasePleine) {
 				define_pts(score, 9, true);
 				joueur.setscoreSpecial(score);
 			}
@@ -172,15 +181,18 @@ public class JoueurTabController {
 	 * et sous-total de la partie somme
 	 * Appel la vérification de la prime de 35 (verif_prime35())
 	 */
-	void Somme_ScoreAndSousTotal() {
+	public void Somme_ScoreAndSousTotal() {
+		boolean uneCasePleine = false;
 		int i = 0, score = 0;
+
 		for (Label label : joueur.getLabels_somme()[numJoueur]) {
 			if (!joueur.label_isNotPlayed(i + 1, false) && i != 6 && i != 8) {
 				score = score + Integer.parseInt(label.getText());
-			} else if (i == 6) {
+				uneCasePleine = true;
+			} else if (i == 6 && uneCasePleine) {
 				define_pts(score, 7, false);
 				verif_prime35(score);
-			} else if (i == 8) {
+			} else if (i == 8 && uneCasePleine) {
 				define_pts(score, 9, false);
 				joueur.setScoreSomme(score);
 			}
@@ -239,7 +251,7 @@ public class JoueurTabController {
 	/**
 	 * Active les boutons sommes/spéciaux encore non joués
 	 */
-	void activeNotPlayedButtons() {
+	public void activeNotPlayedButtons() {
 		int i = 1;
 		for (Button but : Bso) {
 			if (joueur.label_isNotPlayed(i, false)) {
@@ -260,7 +272,7 @@ public class JoueurTabController {
 	/**
 	 * Désactive tous les boutons sommes/spéciaux du joueur
 	 */
-	void disableAllButtons() {
+	public void disableAllButtons() {
 		for (Button but : Bso) {
 			but.setDisable(true);
 		}

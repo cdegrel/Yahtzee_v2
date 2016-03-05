@@ -26,9 +26,12 @@ public class IA extends Joueur {
 		listCoup.add("quatre");
 		listCoup.add("cinq");
 		listCoup.add("six");
-		listCoup.add("brelan");listCoup.add("carre");
-		listCoup.add("full");listCoup.add("petiteSuite");
-		listCoup.add("grandeSuite");listCoup.add("yahtzee");
+		listCoup.add("brelan");
+		listCoup.add("carre");
+		listCoup.add("full");
+		listCoup.add("petiteSuite");
+		listCoup.add("grandeSuite");
+		listCoup.add("yahtzee");
 
 	}
 
@@ -40,12 +43,22 @@ public class IA extends Joueur {
 		return true;
 	}
 
+	public int calculBasic(int i, int tab[]) {
+		int somme = 0;
+		for (int j = 0; j < tab.length; j++) {
+			if (tab[j] == i) {
+				somme = somme + tab[j];
+			}
+		}
+		return somme;
+	}
+
 	public void jouer() {
 
 		de.jette();
 		Arrays.sort(de.DesGen);
-	//verif des coupd bon d'est le premier lancer
-		if(listCoup.size()!=0) {//verif si la liste est vide ou pas
+		//verif des coupd bon d'est le premier lancer
+		if (listCoup.size() != 0) {//verif si la liste est vide ou pas
 
 			if (listCoup.contains("yahtzee") && model.yahtzee(de.DesGen) == 50) {
 
@@ -83,71 +96,79 @@ public class IA extends Joueur {
 				this.setscoreTotal(model.carre(de.DesGen));
 				listCoup.remove("brelan");
 
-			} else if(listCoup.contains("un")||listCoup.contains("deux")||listCoup.contains("trois")//il me faut la methode pour le calcule du score
-					||listCoup.contains("quatre")||listCoup.contains("cinq")||listCoup.contains("six")){
+			} else if (listCoup.contains("un") || listCoup.contains("deux") || listCoup.contains("trois")//il me faut la methode pour le calcule du score
+					|| listCoup.contains("quatre") || listCoup.contains("cinq") || listCoup.contains("six")) {
 
 
-					if(de.DesGen[0] == 1&&//verif des 1
-							de.DesGen[0] == de.DesGen[1]&&
-							de.DesGen[1] == de.DesGen[2]&&
-							de.DesGen[2] == de.DesGen[3]&&
-							de.DesGen[3] == de.DesGen[4]){
+				if (de.DesGen[0] == 1 &&//verif des 1
+						de.DesGen[0] == de.DesGen[1] &&
+						de.DesGen[1] == de.DesGen[2] &&
+						de.DesGen[2] == de.DesGen[3] &&
+						de.DesGen[3] == de.DesGen[4]) {
 
-							this.setScoreSomme(model.calculBasic(1,de.DesGen));
-							this.setscoreTotal(model.calculBasic(1,de.DesGen));
-							listCoup.remove(1);}
+					this.setScoreSomme(calculBasic(1, de.DesGen));
+					this.setscoreTotal(calculBasic(1, de.DesGen));
+					listCoup.remove(1);
+				}
 
-				if(de.DesGen[0] == 2&&//verif des 2
-						de.DesGen[0] == de.DesGen[1]&&
-						de.DesGen[1] == de.DesGen[2]&&
-						de.DesGen[2] == de.DesGen[3]&&
-						de.DesGen[3] == de.DesGen[4]){
+				if (de.DesGen[0] == 2 &&//verif des 2
+						de.DesGen[0] == de.DesGen[1] &&
+						de.DesGen[1] == de.DesGen[2] &&
+						de.DesGen[2] == de.DesGen[3] &&
+						de.DesGen[3] == de.DesGen[4]) {
 
-					this.setScoreSomme(model.calculBasic(2,de.DesGen));
-					this.setscoreTotal(model.calculBasic(2,de.DesGen));
-					listCoup.remove(2);}
+					this.setScoreSomme(calculBasic(2, de.DesGen));
+					this.setscoreTotal(calculBasic(2, de.DesGen));
+					listCoup.remove(2);
+				}
 
-				if(de.DesGen[0] == 3&&//verif des 3
-						de.DesGen[0] == de.DesGen[1]&&
-						de.DesGen[1] == de.DesGen[2]&&
-						de.DesGen[2] == de.DesGen[3]&&
-						de.DesGen[3] == de.DesGen[4]){
+				if (de.DesGen[0] == 3 &&//verif des 3
+						de.DesGen[0] == de.DesGen[1] &&
+						de.DesGen[1] == de.DesGen[2] &&
+						de.DesGen[2] == de.DesGen[3] &&
+						de.DesGen[3] == de.DesGen[4]) {
 
-					this.setScoreSomme(model.calculBasic(3,de.DesGen));
-					this.setscoreTotal(model.calculBasic(3,de.DesGen));
-					listCoup.remove(3);}
+					this.setScoreSomme(calculBasic(3, de.DesGen));
+					this.setscoreTotal(calculBasic(3, de.DesGen));
+					listCoup.remove(3);
+				}
 
-				if(de.DesGen[0] == 4&&//verif des 4
-						de.DesGen[0] == de.DesGen[1]&&
-						de.DesGen[1] == de.DesGen[2]&&
-						de.DesGen[2] == de.DesGen[3]&&
-						de.DesGen[3] == de.DesGen[4]){
+				if (de.DesGen[0] == 4 &&//verif des 4
+						de.DesGen[0] == de.DesGen[1] &&
+						de.DesGen[1] == de.DesGen[2] &&
+						de.DesGen[2] == de.DesGen[3] &&
+						de.DesGen[3] == de.DesGen[4]) {
 
-					this.setScoreSomme(model.calculBasic(4,de.DesGen));
-					this.setscoreTotal(model.calculBasic(4,de.DesGen));
-					listCoup.remove(4);}
+					this.setScoreSomme(calculBasic(4, de.DesGen));
+					this.setscoreTotal(calculBasic(4, de.DesGen));
+					listCoup.remove(4);
+				}
 
-				if(de.DesGen[0] == 5&&//verif des 5
-						de.DesGen[0] == de.DesGen[1]&&
-						de.DesGen[1] == de.DesGen[2]&&
-						de.DesGen[2] == de.DesGen[3]&&
-						de.DesGen[3] == de.DesGen[4]){
+				if (de.DesGen[0] == 5 &&//verif des 5
+						de.DesGen[0] == de.DesGen[1] &&
+						de.DesGen[1] == de.DesGen[2] &&
+						de.DesGen[2] == de.DesGen[3] &&
+						de.DesGen[3] == de.DesGen[4]) {
 
-					this.setScoreSomme(model.calculBasic(5,de.DesGen));
-					this.setscoreTotal(model.calculBasic(5,de.DesGen));
-					listCoup.remove(5);}
+					this.setScoreSomme(calculBasic(5, de.DesGen));
+					this.setscoreTotal(calculBasic(5, de.DesGen));
+					listCoup.remove(5);
+				}
 
-				if(de.DesGen[0] == 6&&//verif des 6
-						de.DesGen[0] == de.DesGen[1]&&
-						de.DesGen[1] == de.DesGen[2]&&
-						de.DesGen[2] == de.DesGen[3]&&
-						de.DesGen[3] == de.DesGen[4]){
+				if (de.DesGen[0] == 6 &&//verif des 6
+						de.DesGen[0] == de.DesGen[1] &&
+						de.DesGen[1] == de.DesGen[2] &&
+						de.DesGen[2] == de.DesGen[3] &&
+						de.DesGen[3] == de.DesGen[4]) {
 
-					this.setScoreSomme(model.calculBasic(6,de.DesGen));
-					this.setscoreTotal(model.calculBasic(6,de.DesGen));
-					listCoup.remove(6);}
+					this.setScoreSomme(calculBasic(6, de.DesGen));
+					this.setscoreTotal(calculBasic(6, de.DesGen));
+					listCoup.remove(6);
+				}
 
-			}else{System.out.println("Ia ne sait plus quoi faire");}
+			} else {
+				System.out.println("Ia ne sait plus quoi faire");
+			}
 
 		}
 	}

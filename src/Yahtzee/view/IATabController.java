@@ -2,6 +2,7 @@ package Yahtzee.view;
 
 import Yahtzee.Main;
 import Yahtzee.model.Model;
+import Yahtzee.util.IA;
 import Yahtzee.util.Joueur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,8 +26,8 @@ public class IATabController {
 	@FXML
 	private Label Total_final_pts;                      // Label du score final
 	private Model model;                                // Modèle
-	private int numJoueur;                              // Numéro du joueur
-	private Joueur joueur;                              // Raccourci du joueur depuis modèle
+	private int numIA;                                  // Numéro du joueur
+	private IA ia;                                      // Raccourci du joueur depuis modèle
 	private InterfaceController interfaceController;    // Contrôleur maître
 	protected ArrayList<String> listCoup;
 	/*@FXML
@@ -36,17 +37,17 @@ public class IATabController {
 	/**
 	 * Appelé à la création du joueur
 	 *
-	 * @param model     type Model
-	 * @param numJoueur type int
-	 *                  numéro du joueur
+	 * @param model type Model
+	 * @param numIA type int
+	 *              numéro du joueur
 	 */
-	public void init_data(Model model, int numJoueur, InterfaceController interfaceController) {
+	public void init_data(Model model, int numIA, InterfaceController interfaceController) {
 		this.model = model;
-		this.numJoueur = numJoueur;
+		this.numIA = numIA;
 		this.interfaceController = interfaceController;
 		Bso = arrayGenerate_buttons(tab_somme, false);
 		Bsp = arrayGenerate_buttons(tab_special, true);
-		if (numJoueur != 0) disableAllButtons();
+		if (numIA != 0) disableAllButtons();
 		listCoup = new ArrayList<>();//(liste comprenant toutes les combi
 		listCoup.add("chance");
 		listCoup.add("un");
@@ -65,9 +66,9 @@ public class IATabController {
 	 * Appelé après la création de tous les joueurs
 	 */
 	public void init_data_after_JoueurList() {
-		joueur = model.getJoueurs().get(numJoueur);
-		joueur.setLabels_somme(createLabel(tab_somme, false, model.getNbJoueurs()));
-		joueur.setLabels_special(createLabel(tab_special, true, model.getNbJoueurs()));
+		ia = (IA) model.getJoueurs().get(numIA);
+		ia.setLabels_somme(createLabel(tab_somme, false, model.getNbJoueurs()));
+		ia.setLabels_special(createLabel(tab_special, true, model.getNbJoueurs()));
 	}
 
 	/**
@@ -83,7 +84,7 @@ public class IATabController {
 		boolean col = !butPressed[0].equals("Bso");
 		int row = Integer.parseInt(butPressed[1]);
 
-		if (model.getDes().getLancer() != 0 && joueur.label_isNotPlayed(row, col)) {
+		if (model.getDes().getLancer() != 0 && ia.label_isNotPlayed(row, col)) {
 			int pts;
 			if (!col) {
 				pts = model.joueSomme(row, interfaceController.getDes());
@@ -132,19 +133,19 @@ public class IATabController {
 	 * @return type boolean
 	 */
 	boolean verif_partieFinie() {
-		for (int i = 0; i < joueur.getLabels_somme()[numJoueur].length - 3; i++) {
-			if (joueur.label_isNotPlayed(i + 1, false)) {
+		for (int i = 0; i < ia.getLabels_somme()[numIA].length - 3; i++) {
+			if (ia.label_isNotPlayed(i + 1, false)) {
 				return false;
 			}
 		}
 
-		for (int i = 0; i < joueur.getLabels_special()[numJoueur].length - 2; i++) {
-			if (joueur.label_isNotPlayed(i + 1, true)) {
+		for (int i = 0; i < ia.getLabels_special()[numIA].length - 2; i++) {
+			if (ia.label_isNotPlayed(i + 1, true)) {
 				return false;
 			}
 		}
 
-		if (numJoueur == model.getNbJoueurs() - 1) {
+		if (numIA == model.getNbJoueurs() - 1) {
 			interfaceController.fin_des();
 			Main.PopUp_partieFinie(model);
 			return true;
@@ -158,8 +159,8 @@ public class IATabController {
 	 * (calcul/sauvegarde/affichage)
 	 */
 	void Total_score() {
-		joueur.setscoreTotal(joueur.getScoreSomme() + joueur.getscoreSpecial());
-		Total_final_pts.setText(Integer.toString(joueur.getscoreTotal()) + " pts");
+		ia.setscoreTotal(ia.getScoreSomme() + ia.getscoreSpecial());
+		Total_final_pts.setText(Integer.toString(ia.getscoreTotal()) + " pts");
 	}
 
 	/**
@@ -168,12 +169,12 @@ public class IATabController {
 	 */
 	void Special_SousTotal() {
 		int i = 0, score = 0;
-		for (Label label : joueur.getLabels_special()[numJoueur]) {
-			if (!joueur.label_isNotPlayed(i + 1, true) && i != 8) {
+		for (Label label : ia.getLabels_special()[numIA]) {
+			if (!ia.label_isNotPlayed(i + 1, true) && i != 8) {
 				score = score + Integer.parseInt(label.getText());
 			} else if (i == 8) {
 				define_pts(score, 9, true);
-				joueur.setscoreSpecial(score);
+				ia.setscoreSpecial(score);
 			}
 			i++;
 		}
@@ -186,15 +187,15 @@ public class IATabController {
 	 */
 	void Somme_ScoreAndSousTotal() {
 		int i = 0, score = 0;
-		for (Label label : joueur.getLabels_somme()[numJoueur]) {
-			if (!joueur.label_isNotPlayed(i + 1, false) && i != 6 && i != 8) {
+		for (Label label : ia.getLabels_somme()[numIA]) {
+			if (!ia.label_isNotPlayed(i + 1, false) && i != 6 && i != 8) {
 				score = score + Integer.parseInt(label.getText());
 			} else if (i == 6) {
 				define_pts(score, 7, false);
 				verif_prime35(score);
 			} else if (i == 8) {
 				define_pts(score, 9, false);
-				joueur.setScoreSomme(score);
+				ia.setScoreSomme(score);
 			}
 			i++;
 		}
@@ -206,8 +207,8 @@ public class IATabController {
 	 * - 5 dés identiques ont été de nouveau tirés
 	 */
 	void verif_yahtzee100() {
-		if (joueur.label_isNotPlayed(8, true) && !joueur.label_isNotPlayed(6, true)
-				&& !joueur.getLabels_special()[numJoueur][5].getText().equals("0")) {
+		if (ia.label_isNotPlayed(8, true) && !ia.label_isNotPlayed(6, true)
+				&& !ia.getLabels_special()[numIA][5].getText().equals("0")) {
 
 			if (model.joueSpecial("yahtzee", interfaceController.getDes()) > 0) {
 				define_pts(100, 8, true);
@@ -221,7 +222,7 @@ public class IATabController {
 	 * @param score type int
 	 */
 	void verif_prime35(int score) {
-		if (joueur.label_isNotPlayed(8, false) && score >= 63) {
+		if (ia.label_isNotPlayed(8, false) && score >= 63) {
 			define_pts(35, 8, false);
 		}
 	}
@@ -241,9 +242,9 @@ public class IATabController {
 	void define_pts(int pts, int row, boolean col) {
 		for (Joueur joueur : model.getJoueurs()) {
 			if (!col) {
-				joueur.getLabels_somme()[numJoueur][row - 1].setText(Integer.toString(pts));
+				joueur.getLabels_somme()[numIA][row - 1].setText(Integer.toString(pts));
 			} else {
-				joueur.getLabels_special()[numJoueur][row - 1].setText(Integer.toString(pts));
+				joueur.getLabels_special()[numIA][row - 1].setText(Integer.toString(pts));
 			}
 		}
 	}
@@ -254,7 +255,7 @@ public class IATabController {
 	void activeNotPlayedButtons() {
 		int i = 1;
 		for (Button but : Bso) {
-			if (joueur.label_isNotPlayed(i, false)) {
+			if (ia.label_isNotPlayed(i, false)) {
 				but.setDisable(false);
 			}
 			i++;
@@ -262,7 +263,7 @@ public class IATabController {
 
 		i = 1;
 		for (Button but : Bsp) {
-			if (joueur.label_isNotPlayed(i, true)) {
+			if (ia.label_isNotPlayed(i, true)) {
 				but.setDisable(false);
 			}
 			i++;
@@ -307,7 +308,7 @@ public class IATabController {
 				}
 				if (GridPane.getColumnIndex(node) != null && GridPane.getColumnIndex(node) == col) {
 					labels[j][i] = new Label("...");
-					labels[j][i].getStyleClass().add("results_pts" + (numJoueur == j ? "" : "_autre"));
+					labels[j][i].getStyleClass().add("results_pts" + (numIA == j ? "" : "_autre"));
 					((HBox) node).getChildren().add(labels[j][i]);
 					i++;
 				}
@@ -348,38 +349,38 @@ public class IATabController {
 
 		model.getDes().jette();
 
-		Arrays.sort(model.getDes().getDe());
+		Arrays.sort(model.getDes().getDes());
 		//verif des coupd bon d'est le premier lancer
 		if(listCoup.size()!=0) {//verif si la liste est vide ou pas
 
-			if (listCoup.contains("yahtzee") && model.yahtzee(model.getDes().getDe()) == 50) {
+			if (listCoup.contains("yahtzee") && model.yahtzee(model.getDes().getDes()) == 50) {
 
 				define_pts(50,6,true);
 				listCoup.remove("yahtzee");//on retire de la liste
 
-			} else if (listCoup.contains("grandeSuite") && model.grandeSuite(model.getDes().getDe()) == 40) {
+			} else if (listCoup.contains("grandeSuite") && model.grandeSuite(model.getDes().getDes()) == 40) {
 
 				define_pts(40,5,true);
 				listCoup.remove("grandeSuite");
 
-			} else if (listCoup.contains("petiteSuite") && model.petiteSuite(model.getDes().getDe()) == 30) {
+			} else if (listCoup.contains("petiteSuite") && model.petiteSuite(model.getDes().getDes()) == 30) {
 
 				define_pts(30,4,true);
 				listCoup.remove("petiteSuite");
 
-			} else if (listCoup.contains("full") && model.full(model.getDes().getDe()) == 25) {
+			} else if (listCoup.contains("full") && model.full(model.getDes().getDes()) == 25) {
 
 				define_pts(25,3,true);
 				listCoup.remove("full");
 
-			} else if (listCoup.contains("carre") && model.carre(model.getDes().getDe()) != 0) {
+			} else if (listCoup.contains("carre") && model.carre(model.getDes().getDes()) != 0) {
 
-				define_pts(model.carre(model.getDes().getDe()),2,true);
+				define_pts(model.carre(model.getDes().getDes()),2,true);
 				listCoup.remove("carre");
 
-			} else if (listCoup.contains("brelan") && model.brelan(model.getDes().getDe()) != 0) {
+			} else if (listCoup.contains("brelan") && model.brelan(model.getDes().getDes()) != 0) {
 
-				define_pts(model.brelan(model.getDes().getDe()),1,true);
+				define_pts(model.brelan(model.getDes().getDes()),1,true);
 				listCoup.remove("brelan");
 
 			} else if(listCoup.contains("un")||listCoup.contains("deux")||listCoup.contains("trois")//il me faut la methode pour le calcule du score
@@ -392,7 +393,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(3,model.getDes().getDe()),1,false);
+					define_pts(ia.calculBasic(3,model.getDes().getDes()),1,false);
 					listCoup.remove(1);}
 
 				if(model.getDes().getSortie(0) == 2&&//verif des 2
@@ -401,7 +402,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(2,model.getDes().getDe()),2,false);
+					define_pts(ia.calculBasic(2,model.getDes().getDes()),2,false);
 					listCoup.remove(2);}
 
 				if(model.getDes().getSortie(0) == 3&&//verif des 3
@@ -410,7 +411,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(3,model.getDes().getDe()),3,false);
+					define_pts(ia.calculBasic(3,model.getDes().getDes()),3,false);
 					listCoup.remove(3);}
 
 				if(model.getDes().getSortie(0) == 4&&//verif des 4
@@ -419,7 +420,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(4,model.getDes().getDe()),4,false);
+					define_pts(ia.calculBasic(4,model.getDes().getDes()),4,false);
 					listCoup.remove(4);}
 
 				if(model.getDes().getSortie(0) == 5&&//verif des 5
@@ -428,7 +429,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(4,model.getDes().getDe()),5,false);
+					define_pts(ia.calculBasic(4,model.getDes().getDes()),5,false);
 					listCoup.remove(5);}
 
 				if(model.getDes().getSortie(0) == 6&&//verif des 6
@@ -437,7 +438,7 @@ public class IATabController {
 						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
 						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
 
-					define_pts(model.calculBasic(6,model.getDes().getDe()),6,false);
+					define_pts(ia.calculBasic(6,model.getDes().getDes()),6,false);
 					listCoup.remove(6);}
 
 			}else{System.out.println("Ia ne sait plus quoi faire");}

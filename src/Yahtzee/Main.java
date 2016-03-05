@@ -1,11 +1,10 @@
 package Yahtzee;
 
 import Yahtzee.model.Model;
-import Yahtzee.view.IATabController;
-import Yahtzee.view.InterfaceController;
-import Yahtzee.view.PartieFinieController;
-import Yahtzee.view.JoueurTabController;
+import Yahtzee.view.*;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -43,6 +43,14 @@ public class Main extends Application {
 			interfaceController = loader.getController();
 			interfaceController.init_data(model);
 			primaryStage.setTitle("Yahtzee");
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					interfaceController.stopThreads();
+					Platform.exit();
+					System.exit(0);
+				}
+			});
 			primaryStage.setScene(new Scene(rootLayout));
 			primaryStage.show();
 		} catch (IOException e) {
@@ -103,6 +111,24 @@ public class Main extends Application {
 			PartieFinieController partieFinieController = loader.getController();
 			partieFinieController.init_data(model);
 			stage.setTitle("Partie Terminée");
+			stage.setScene(new Scene(root));
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setResizable(false);
+			stage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void PopUp_configServer(Model model, boolean mode) {
+		try {
+			Stage stage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/PopUp_configServer.fxml"));
+			Pane root = loader.load();
+			configServerController configServController = loader.getController();
+			configServController.init_data(model, mode, stage);
+			stage.setTitle("Paramètres du Yahtzee réseau");
 			stage.setScene(new Scene(root));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setResizable(false);

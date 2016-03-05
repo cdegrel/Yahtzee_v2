@@ -26,6 +26,12 @@
                         <MenuItem fx:id="np_6_joueur" mnemonicParsing="false" onAction="#menu" text="6 Joueurs" />
                     </items>
                   </Menu>
+                  <Menu mnemonicParsing="false" text="Multijoueur">
+                    <items>
+                      <MenuItem fx:id="heberger" mnemonicParsing="false" onAction="#menu" text="Héberger" />
+                        <MenuItem fx:id="rejoindre" mnemonicParsing="false" onAction="#menu" text="Rejoindre" />
+                    </items>
+                  </Menu>
             <MenuItem fx:id="open" mnemonicParsing="false" onAction="#menu" text="Ouvrir une partie..." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="save" mnemonicParsing="false" onAction="#menu" text="Sauvegarder la partie sous..." />

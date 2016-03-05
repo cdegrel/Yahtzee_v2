@@ -1,7 +1,7 @@
 package Yahtzee.model;
 
+import Yahtzee.multi.Server;
 import Yahtzee.util.De;
-import Yahtzee.util.IA;
 import Yahtzee.util.Joueur;
 import javafx.scene.control.ToggleButton;
 
@@ -11,16 +11,63 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Model {
-	protected ArrayList<Joueur> joueurs;
-	protected IA ia;
-	protected De Des;
+
+	ArrayList<Joueur> joueurs;
 	int joueurJoue;
+	De Des;
+
+	boolean multiDistant;
+	String ip_address;
+	int port;
+	int nbJouMultiDist;
+	Server server;
 
 	public Model() {
 		joueurs = new ArrayList<>();
 		Des = new De();
 		initJoueurJoue();
-		//ia = new IA(il prend quoi comme paramettre?????);
+		multiDistant = false;
+		ip_address = null;
+	}
+
+	public String getIp_address() {
+		return ip_address;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public int getNbJouMultiDist() {
+		return nbJouMultiDist;
+	}
+
+	public void configMultiDistant(String ip_address, int port, int nbJouMultiDist) {
+		this.ip_address = ip_address;
+		this.port = port;
+		this.nbJouMultiDist = nbJouMultiDist;
+	}
+
+	public void startServer() {
+		if (ip_address != null && port != 0 && nbJouMultiDist >= 2) {
+			server = new Server(this);
+		}/* else {
+			System.out.println("Erreur de lancement serveur, la configuration s'est mal déroulée");
+		}*/
+	}
+
+	public void shutdownServer() {
+		if (server != null) {
+			server.shutdown();
+		}
+	}
+
+	public boolean isMultiDistant() {
+		return multiDistant;
+	}
+
+	public void setMultiDistant(boolean multiDistant) {
+		this.multiDistant = multiDistant;
 	}
 
 	public De getDes() {
@@ -53,16 +100,7 @@ public class Model {
 			initJoueurJoue();
 		}
 	}
-	public int calculBasic(int i, int tab[]){
-		int somme= 0;
-		for (int j = 0; j <tab.length ; j++) {
-			if(tab[j]==i){
-				somme = somme + tab[j];
-			}
-		}
-		return somme;
 
-	}
 	public int joueSomme(int valeur, ToggleButton[] des) {
 		int nbDes = 0;
 		for (ToggleButton de : des) {
@@ -192,6 +230,5 @@ public class Model {
 		}
 		return somme;
 	}
-
 
 }

@@ -3,6 +3,7 @@ package Yahtzee.view;
 import Yahtzee.Main;
 import Yahtzee.img.img;
 import Yahtzee.model.Model;
+import Yahtzee.multi.JoueurThread;
 import Yahtzee.util.IA;
 import Yahtzee.util.Joueur;
 import javafx.event.ActionEvent;
@@ -19,7 +20,7 @@ public class InterfaceController {
 
 	@FXML
 	private MenuItem np_1_joueur, np_2_joueur, np_3_joueur, np_4_joueur,
-			np_5_joueur, np_6_joueur, save, open, exit, about;          // Éléments du menu
+			np_5_joueur, np_6_joueur, heberger, rejoindre, save, open, exit, about;          // Éléments du menu
 	@FXML
 	private TabPane tabpane;                                            // Barre d'onglets
 	@FXML
@@ -30,6 +31,7 @@ public class InterfaceController {
 	@FXML
 	private Button lancer;                                              // Bouton de lancer
 	private Model model;                                                // Modèle
+	private JoueurThread joueurThread;
 
 	/*@FXML
 	void initialize() {
@@ -55,7 +57,7 @@ public class InterfaceController {
 	@FXML
 	void menu(ActionEvent event) {
 		if (event.getSource() == np_1_joueur) {
-			newListe_joueur(1);        // création d'un jeu avec 1 joueur + IA
+			newListe_joueur(1);        // création d'un jeu avec 1 joueur + 1 IA
 		}
 		if (event.getSource() == np_2_joueur) {
 			newListe_joueur(2);
@@ -73,18 +75,47 @@ public class InterfaceController {
 			newListe_joueur(6);
 		}
 
+		if (event.getSource() == heberger) {
+			stopThreads();
+			model.setMultiDistant(true);
+			Main.PopUp_configServer(model, true);
+			model.startServer();
+			joueurThread = new JoueurThread(model, this);
+		}
+		if (event.getSource() == rejoindre) {
+			stopThreads();
+			model.setMultiDistant(true);
+			Main.PopUp_configServer(model, false);
+			joueurThread = new JoueurThread(model, this);
+		}
+
+		//noinspection StatementWithEmptyBody
 		if (event.getSource() == save) {
 			// Création d'un popup pour sauvegarde
 		}
+		//noinspection StatementWithEmptyBody
 		if (event.getSource() == open) {
 			// Création d'un popup pour choisir la sauvegarde à charger
 		}
 
 		if (event.getSource() == exit) {
+			stopThreads();
 			System.exit(0);
 		}
 		if (event.getSource() == about) {
 			Main.PopUp_about();
+		}
+	}
+
+	/**
+	 * Enclenche les procédure d'arrêt pour
+	 * le threadJoueur et le threadServer
+	 * si le mode multiDistant est actif
+	 */
+	public void stopThreads() {
+		if (model.isMultiDistant()) {
+			joueurThread.interrupt();
+			model.shutdownServer();
 		}
 	}
 
@@ -95,6 +126,7 @@ public class InterfaceController {
 	 * @param event type ActionEvent
 	 */
 	@FXML
+	@SuppressWarnings("unused")
 	void lancerDes_action(ActionEvent event) {
 		model.getDes().jette();
 
@@ -116,10 +148,8 @@ public class InterfaceController {
 			model.getDes().incremLanceNum();
 		}
 		if (model.getDes().getLancer() == 3) {
-			//if(model.ia.isIA())
-			lancer.setDisable(true);
+			DisableLancer(true);
 		}
-
 	}
 
 	/**
@@ -134,16 +164,32 @@ public class InterfaceController {
 
 	/**
 	 * Supprime (removeAll_Joueur())
-	 * et crée une nouvelle liste de joueurs
+	 * et crée une nouvelle liste de joueurs locaux
 	 *
 	 * @param nbJoueur type int
 	 *                 nombre de joueurs désiré(s)
 	 */
-	void newListe_joueur(int nbJoueur) {
+	public void newListe_joueur(int nbJoueur) {
+		stopThreads();
+		newListe_joueur(nbJoueur, 0);
+	}
+
+	/**
+	 * Supprime (removeAll_Joueur())
+	 * et crée une nouvelle liste de joueurs
+	 * comprenant un joueur local et d'autres distants
+	 *
+	 * @param nbJoueur type int
+	 *                 nombre de joueurs désiré(s)
+	 * @param numJActu type int
+	 *                 numéro du joueur actuel (si multiDistant)
+	 */
+	public void newListe_joueur(int nbJoueur, int numJActu) {
 		removeAll_Joueur();
 		init_des();
 		for (int i = 0; i < nbJoueur; i++) {
-			Tab tab_joueur = new Tab("Joueur " + (tabpane.getTabs().size() + 1));
+
+			Tab tab_joueur = new Tab(((model.isMultiDistant() && i != numJActu) ? "Distant " : "Joueur ") + (tabpane.getTabs().size() + 1));
 			tabpane.getTabs().add(tab_joueur);
 			model.getJoueurs().add(new Joueur(tab_joueur, i));
 		}
@@ -181,9 +227,9 @@ public class InterfaceController {
 	/**
 	 * (Ré)Initialise les dés
 	 */
-	void init_des() {
+	public void init_des() {
 		model.getDes().initLancer();
-		lancer.setDisable(false);
+		DisableLancer(false);
 		lancer.setVisible(true);
 		String[] lettre = new String[]{"Y", "A", "H", "T", "Z"};
 		ImageView imv;
@@ -319,5 +365,26 @@ public class InterfaceController {
 	 */
 	public ToggleButton[] getDes() {
 		return des;
+	}
+
+
+	/**
+	 * Active ou désactive le bouton Lancer
+	 *
+	 * @param bool type boolean
+	 *             false : bouton actif
+	 *             true : bouton inactif
+	 */
+	public void DisableLancer(boolean bool) {
+		lancer.setDisable(bool);
+	}
+
+	/**
+	 * Retourne le threadJoueur
+	 *
+	 * @return type JoueurThread
+	 */
+	public JoueurThread getThread() {
+		return joueurThread;
 	}
 }
