@@ -100,8 +100,6 @@ public class JoueurTabController {
 					joueur.convertLabelsToSend(true);
 				}
 				interfaceController.getThread().aJoue();
-				// ------VERIFIER LA FIN DE PARTIE AVEC LE MULTIDISTANT--------VERIFIER LA FIN DE PARTIE AVEC LE MULTIDISTANT-------VERIFIER LA FIN DE PARTIE AVEC LE MULTIDISTANT
-				// et avant de faire jouer un autre joueur (juste après la récup de l'objet)
 			}
 		}
 	}
