@@ -1,12 +1,16 @@
 package Yahtzee.util;
 
+import java.util.Random;
+
 public class De {
-	protected int lanceNum;
-	protected int DesGen[];
+	int lanceNum;
+	int DesGen[];
+	static Random random;
 
 	public De() {
 		initLancer();
 		DesGen = new int[6];
+		random = new Random();
 	}
 
 	public void initLancer() {
@@ -14,8 +18,9 @@ public class De {
 	}
 
 	public void jette() {
+		int min = 1, max = 6;
 		for (int i = 0; i < 5; i++) {
-			DesGen[i] = (int) ((6.0 * Math.random()) + 1);
+			DesGen[i] = random.nextInt(max - min + 1) + min;
 		}
 	}
 
