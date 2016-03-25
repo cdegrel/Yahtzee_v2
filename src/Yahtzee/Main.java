@@ -120,7 +120,8 @@ public class Main extends Application {
 		}
 	}
 
-	public static void PopUp_configServer(Model model, boolean mode) {
+	public static boolean PopUp_configServer(final Model model, boolean mode) {
+		final boolean[] confOk = {true};
 		try {
 			Stage stage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
@@ -128,6 +129,12 @@ public class Main extends Application {
 			Pane root = loader.load();
 			configServerController configServController = loader.getController();
 			configServController.init_data(model, mode, stage);
+			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					confOk[0] = false;
+				}
+			});
 			stage.setTitle("Paramètres du Yahtzee réseau");
 			stage.setScene(new Scene(root));
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -136,5 +143,6 @@ public class Main extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return confOk[0];
 	}
 }

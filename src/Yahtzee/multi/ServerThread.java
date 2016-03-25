@@ -6,15 +6,14 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ServerThread extends Thread {
+class ServerThread extends Thread {
 
-	public int numJoueurActu;
-	public Server server;
-	public ObjectInputStream OisReception = null;
-	public ObjectOutputStream OusEnvoi;
-	public ArrayList<Joueur> joueurList;
+	private int numJoueurActu;
+	private Server server;
+	private ObjectInputStream OisReception = null;
+	private ObjectOutputStream OusEnvoi;
 
-	public ServerThread(Socket sockjoueur, int numJoueurActu, Server server) {
+	ServerThread(Socket sockjoueur, int numJoueurActu, Server server) {
 		this.numJoueurActu = numJoueurActu;
 		this.server = server;
 		try {
@@ -52,7 +51,7 @@ public class ServerThread extends Thread {
 		while (true) {
 			if (numJoueurActu == server.getModel().getJoueurJoue()) {
 				PrintConsole("Attend le jeu du joueur " + (numJoueurActu + 1));
-				joueurList = (ArrayList<Joueur>) OisReception.readObject();
+				ArrayList<Joueur> joueurList = (ArrayList<Joueur>) OisReception.readObject();
 				PrintConsole("Jeu du joueur " + (numJoueurActu + 1) + " reçu");
 				server.EnvoiAll(this, joueurList);
 			}
@@ -61,7 +60,7 @@ public class ServerThread extends Thread {
 		}
 	}
 
-	synchronized public void PrintConsole(String message) {
+	synchronized void PrintConsole(String message) {
 		System.out.println("\033[31mServerThread (Joueur " + (numJoueurActu + 1) + ") -- " + message + "\u001B[0m");
 	}
 

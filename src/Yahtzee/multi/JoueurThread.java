@@ -19,17 +19,17 @@ public class JoueurThread extends Thread {
 	private ObjectOutputStream OusEnvoi;
 	private ArrayList<Joueur> joueurList;
 
-	private int numJoueur = -2;
+	private int numJoueur;
 	private boolean coup_effectue = false, initialisationJoueur = false;
 
 	public JoueurThread(Model model, InterfaceController Interface) {
-		model.initJoueurJoue();
 		this.model = model;
 		this.Interface = Interface;
 		try {
 			Socket connect = new Socket(model.getIp_address(), model.getPort());
 			OisReception = new ObjectInputStream(connect.getInputStream());
 			OusEnvoi = new ObjectOutputStream(connect.getOutputStream());
+			model.initJoueurJoue();
 			PrintConsole("Connexion au serveur établie");
 			start();
 		} catch (IOException e) {
@@ -53,15 +53,27 @@ public class JoueurThread extends Thread {
 				}
 			});
 
-			if (numJoueur != 0) {
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						model.getJoueurs().get(0).getJoueurController().disableAllButtons();
-						Interface.DisableLancer(true);
-						Interface.basculeTab(numJoueur);
-					}
-				});
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					model.getJoueurs().get(0).getJoueurController().disableAllButtons();
+					Interface.DisableLancer(true);
+					Interface.basculeTab(numJoueur);
+				}
+			});
+
+			if (numJoueur == 0) {
+				PrintConsole("Attend la connexion de tous les joueurs");
+				if (OisReception.readBoolean()) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							Interface.init_des();
+							model.getJoueurs().get(model.getJoueurJoue()).getJoueurController().activeNotPlayedButtons();
+							Interface.basculeTab(model.getJoueurJoue());
+						}
+					});
+				}
 			}
 
 			requestLoop();
@@ -143,7 +155,7 @@ public class JoueurThread extends Thread {
 		}
 	}
 
-	synchronized void PrintConsole(String message) {
+	private synchronized void PrintConsole(String message) {
 		System.out.println("\033[33m- JoueurThread (Joueur " + (numJoueur + 1) + ") : " + message + "\u001B[0m");
 	}
 
@@ -159,6 +171,7 @@ public class JoueurThread extends Thread {
 	@Override
 	public void interrupt() {
 		super.interrupt();
+		model.setMultiDistant(false);
 		if (OisReception != null) {
 			try {
 				OusEnvoi.close(); // Fermeture du flux si l'interruption n'a pas fonctionné.

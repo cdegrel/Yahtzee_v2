@@ -36,6 +36,12 @@ public class Server extends Thread {
 			try {
 				PrintConsole("Attente de connexion du joueur " + (ThreadJoueurs.size() + 1) + "\n");
 				ThreadJoueurs.add(new ServerThread(connect.accept(), ThreadJoueurs.size(), this));
+
+				if (ThreadJoueurs.size() == model.getNbJoueurs()) {
+					PrintConsole("Tous les joueurs sont connectés, début de la partie\n");
+					_ServClientsout.get(0).writeBoolean(true);
+					_ServClientsout.get(0).flush();
+				}
 			} catch (IOException e) {
 				shutdown();
 				/*e.printStackTrace();*/
@@ -43,7 +49,7 @@ public class Server extends Thread {
 		}
 	}
 
-	synchronized void PrintConsole(String message) {
+	private synchronized void PrintConsole(String message) {
 		System.out.println("\033[36mServer - " + message + "\u001B[0m");
 	}
 
@@ -57,7 +63,7 @@ public class Server extends Thread {
 	 * @param out type ObjectOutputStream
 	 *            flux sortant
 	 */
-	synchronized public void addClient(ObjectOutputStream out) {
+	synchronized void addClient(ObjectOutputStream out) {
 		_ServClientsout.addElement(out);
 	}
 
@@ -85,7 +91,7 @@ public class Server extends Thread {
 	 * @param joueurs type Object
 	 *                l'objet à envoyer
 	 */
-	synchronized public void EnvoiAll(ServerThread lui, Object joueurs) {
+	synchronized void EnvoiAll(ServerThread lui, Object joueurs) {
 		ObjectOutputStream out;
 		for (int i = 0; i < _ServClientsout.size(); i++) {
 			out = _ServClientsout.elementAt(i);

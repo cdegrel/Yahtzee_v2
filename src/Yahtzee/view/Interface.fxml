@@ -32,9 +32,9 @@
                         <MenuItem fx:id="rejoindre" mnemonicParsing="false" onAction="#menu" text="Rejoindre" />
                     </items>
                   </Menu>
-            <MenuItem fx:id="open" mnemonicParsing="false" onAction="#menu" text="Ouvrir une partie..." />
+            <!--<MenuItem fx:id="open" mnemonicParsing="false" onAction="#menu" text="Ouvrir une partie..." />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="save" mnemonicParsing="false" onAction="#menu" text="Sauvegarder la partie sous..." />
+            <MenuItem fx:id="save" mnemonicParsing="false" onAction="#menu" text="Sauvegarder la partie sous..." />-->
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#menu" text="Quitter" />
           </items>

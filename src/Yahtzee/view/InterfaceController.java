@@ -77,16 +77,18 @@ public class InterfaceController {
 
 		if (event.getSource() == heberger) {
 			stopThreads();
-			model.setMultiDistant(true);
-			Main.PopUp_configServer(model, true);
-			model.startServer();
-			joueurThread = new JoueurThread(model, this);
+			if (Main.PopUp_configServer(model, true)) {
+				model.setMultiDistant(true);
+				model.startServer();
+				joueurThread = new JoueurThread(model, this);
+			}
 		}
 		if (event.getSource() == rejoindre) {
 			stopThreads();
-			model.setMultiDistant(true);
-			Main.PopUp_configServer(model, false);
-			joueurThread = new JoueurThread(model, this);
+			if (Main.PopUp_configServer(model, false)) {
+				model.setMultiDistant(true);
+				joueurThread = new JoueurThread(model, this);
+			}
 		}
 
 		//noinspection StatementWithEmptyBody
@@ -116,6 +118,7 @@ public class InterfaceController {
 		if (model.isMultiDistant()) {
 			joueurThread.interrupt();
 			model.shutdownServer();
+			model.setMultiDistant(false);
 		}
 	}
 
