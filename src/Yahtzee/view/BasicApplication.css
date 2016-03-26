@@ -76,8 +76,14 @@
 	-fx-font-size: 68%;
 }
 
+.coup_joue {
+	-fx-font-weight: bold;
+	-fx-text-fill: #770000;
+	-fx-font-size: 90%;
+}
+
 .titre_result { /* Score, prime, Sous-total... */
-	-fx-font-size: 14.0px;
+	-fx-font-size: 14px;
 	-fx-background: #000;
 	-fx-padding: 4px 12px 4px 12px;
 
@@ -93,7 +99,7 @@
 }
 
 .total_final_titre { /* Total Final */
-	-fx-font-size: 15.0px;
+	-fx-font-size: 15px;
 	-fx-padding: 4px 12px 4px 12px;
 
 	-fx-inner-border: linear-gradient(to bottom, #F4C700 0%, #DDB221 100%);
@@ -129,7 +135,7 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-	-fx-font-size: 14.0px;
+	-fx-font-size: 14px;
 }
 
 .sec_part_titre { /* Brelan, Carré, Full... */
@@ -156,7 +162,7 @@
 
 .root {
 	/* -fx-font-family: "System"; */
-	-fx-font-size: 13.0px;
+	-fx-font-size: 13px;
 	/*  -fx-base: #209019;
 	-fx-background: #306A0D;
 	-fx-focus-color: #184600; */

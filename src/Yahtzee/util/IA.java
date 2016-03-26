@@ -6,19 +6,18 @@ import Yahtzee.view.IATabController;
 import javafx.scene.control.Tab;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class IA extends Joueur {
 
 	public De de;
 	public Model model;
-	protected IATabController controller;
-	protected ArrayList<String> listCoup;
+	private IATabController controller;
 
 	public IA(Tab tab, int numIA) {
 		super(tab, numIA, true);
 		controller = Main.initTabIALayout(tab, numIA);
-		listCoup = new ArrayList<>();//(liste comprenant toutes les combi
+		@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+		ArrayList<String> listCoup = new ArrayList<>();
 		listCoup.add("chance");
 		listCoup.add("un");
 		listCoup.add("deux");
@@ -45,15 +44,15 @@ public class IA extends Joueur {
 
 	public int calculBasic(int i, int tab[]) {
 		int somme = 0;
-		for (int j = 0; j < tab.length; j++) {
-			if (tab[j] == i) {
-				somme = somme + tab[j];
+		for (int aTab : tab) {
+			if (aTab == i) {
+				somme = somme + aTab;
 			}
 		}
 		return somme;
 	}
 
-	public void jouer() {
+	/*public void jouer() {
 
 		de.jette();
 		Arrays.sort(de.DesGen);
@@ -171,7 +170,7 @@ public class IA extends Joueur {
 			}
 
 		}
-	}
+	}*/
 
 
 }

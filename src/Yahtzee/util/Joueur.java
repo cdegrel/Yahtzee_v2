@@ -8,15 +8,16 @@ import javafx.scene.control.Tab;
 import java.io.Serializable;
 
 public class Joueur implements Serializable {
-	protected int numJoueur;
-	protected int scoreSomme;
-	protected int scoreSpecial;
-	protected int scoreTotal;
-	protected transient JoueurTabController controller;
+	private int numJoueur;
+	private int scoreSomme;
+	private int scoreSpecial;
+	private int scoreTotal;
+	private transient JoueurTabController controller;
 	private transient Label[][] labels_somme;
 	private transient Label[][] labels_special;
 	public String[][] Sendlabels_somme;
 	public String[][] Sendlabels_special;
+	private int[] dernierCoup;
 
 	public Joueur(Tab tab_joueur, int numJoueur, boolean ia) {
 		this.numJoueur = numJoueur;
@@ -82,6 +83,16 @@ public class Joueur implements Serializable {
 
 	public void setLabels_special(Label[][] labels_special) {
 		this.labels_special = labels_special;
+	}
+
+	public int[] getDernierCoup() {
+		return dernierCoup;
+	}
+
+	public void setDernierCoup(int[] dernierCoup) {
+		if (dernierCoup != null) {
+			this.dernierCoup = dernierCoup;
+		}
 	}
 
 	/**

@@ -172,7 +172,7 @@ public class InterfaceController {
 	 * @param nbJoueur type int
 	 *                 nombre de joueurs désiré(s)
 	 */
-	public void newListe_joueur(int nbJoueur) {
+	private void newListe_joueur(int nbJoueur) {
 		stopThreads();
 		newListe_joueur(nbJoueur, 0);
 	}
@@ -213,7 +213,7 @@ public class InterfaceController {
 	/**
 	 * Supprime tous les joueurs
 	 */
-	void removeAll_Joueur() {
+	private void removeAll_Joueur() {
 		tabpane.getTabs().remove(0, tabpane.getTabs().size());    // Supprimer tous les onglets
 		model.initJoueurJoue();
 		model.deleteAllJoueurs();
@@ -222,7 +222,7 @@ public class InterfaceController {
 	/**
 	 * Disposition des dés en fin de partie
 	 */
-	public void fin_des() {
+	void fin_des() {
 		init_des();
 		lancer.setVisible(false);
 	}
@@ -257,7 +257,7 @@ public class InterfaceController {
 	 *               1 = appuie en cours
 	 *               2 = sélectionné
 	 */
-	void setDe_statutFace(ToggleButton de, int statut) {
+	private void setDe_statutFace(ToggleButton de, int statut) {
 		setDe_face(de, Integer.parseInt(de.getText()), statut);
 	}
 
@@ -272,7 +272,7 @@ public class InterfaceController {
 	 *               1 = appuie en cours
 	 *               2 = sélectionné
 	 */
-	void setDe_face(ToggleButton de, int num, int statut) {
+	private void setDe_face(ToggleButton de, int num, int statut) {
 		if (num == 0) return;
 
 		Rectangle2D viewport;
@@ -318,7 +318,7 @@ public class InterfaceController {
 	 *
 	 * @return type ToggleButton[] : dés
 	 */
-	ToggleButton[] arrayGenerate_des() {
+	private ToggleButton[] arrayGenerate_des() {
 		ToggleButton[] Tb = new ToggleButton[5];
 		int col_max = 7;
 		int row = 1;
@@ -387,7 +387,7 @@ public class InterfaceController {
 	 *
 	 * @return type JoueurThread
 	 */
-	public JoueurThread getThread() {
+	JoueurThread getThread() {
 		return joueurThread;
 	}
 }

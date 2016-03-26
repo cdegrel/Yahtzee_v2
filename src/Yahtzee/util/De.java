@@ -3,9 +3,9 @@ package Yahtzee.util;
 import java.util.Random;
 
 public class De {
-	int lanceNum;
-	int DesGen[];
-	static Random random;
+	private int lanceNum;
+	private int DesGen[];
+	private static Random random;
 
 	public De() {
 		initLancer();

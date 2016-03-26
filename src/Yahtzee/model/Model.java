@@ -12,15 +12,15 @@ import java.util.Arrays;
 
 public class Model {
 
-	ArrayList<Joueur> joueurs;
-	int joueurJoue;
-	De Des;
+	private ArrayList<Joueur> joueurs;
+	private int joueurJoue;
+	private De Des;
 
-	boolean multiDistant;
-	String ip_address;
-	int port;
-	int nbJouMultiDist;
-	Server server;
+	private boolean multiDistant;
+	private String ip_address;
+	private int port;
+	private int nbJouMultiDist;
+	private Server server;
 
 	public Model() {
 		joueurs = new ArrayList<>();

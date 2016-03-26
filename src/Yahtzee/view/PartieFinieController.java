@@ -26,7 +26,7 @@ public class PartieFinieController {
 	 * et l'affiche dans le message
 	 * /!\ Cette méthode ne gère pas les ex aequo
 	 */
-	void gagnant() {
+	private void gagnant() {
 		int numJoueur = 0;
 		int score = 0;
 

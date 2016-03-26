@@ -121,6 +121,9 @@ public class JoueurThread extends Thread {
 							model.getJoueurs().get(joueur.getNumJoueur()).appliLabelsToSend(joueur.Sendlabels_somme, false);
 							model.getJoueurs().get(joueur.getNumJoueur()).appliLabelsToSend(joueur.Sendlabels_special, true);
 
+							model.getJoueurs().get(joueur.getNumJoueur()).setDernierCoup(joueur.getDernierCoup());
+							model.getJoueurs().get(joueur.getNumJoueur()).getJoueurController().color_dernierCoupMulti();
+
 							model.getJoueurs().get(joueur.getNumJoueur()).setScoreSomme(joueur.getScoreSomme());
 							model.getJoueurs().get(joueur.getNumJoueur()).setscoreSpecial(joueur.getscoreSpecial());
 							model.getJoueurs().get(joueur.getNumJoueur()).setscoreTotal(joueur.getscoreTotal());

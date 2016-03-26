@@ -35,7 +35,7 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	public void initRootLayout() {
+	private void initRootLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("view/Interface.fxml"));
@@ -120,7 +120,7 @@ public class Main extends Application {
 		}
 	}
 
-	public static boolean PopUp_configServer(final Model model, boolean mode) {
+	public static boolean PopUp_configServer(Model model, boolean mode) {
 		final boolean[] confOk = {true};
 		try {
 			Stage stage = new Stage();

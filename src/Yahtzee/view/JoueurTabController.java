@@ -49,7 +49,7 @@ public class JoueurTabController {
 	/**
 	 * Appelé après la création de tous les joueurs
 	 */
-	public void init_data_after_JoueurList() {
+	void init_data_after_JoueurList() {
 		joueur = model.getJoueurs().get(numJoueur);
 		joueur.setLabels_somme(createLabel(tab_somme, false, model.getNbJoueurs()));
 		joueur.setLabels_special(createLabel(tab_special, true, model.getNbJoueurs()));
@@ -80,6 +80,7 @@ public class JoueurTabController {
 
 			verif_yahtzee100();
 			define_pts(pts, row, col);
+			color_dernierCoup(row, col);
 
 			if (!col) {
 				Somme_ScoreAndSousTotal();
@@ -110,7 +111,7 @@ public class JoueurTabController {
 	 * - Réactive les boutons d'actions (non joués)
 	 * - Bascule la vue sur sa grille
 	 */
-	void nextJoueur() {
+	private void nextJoueur() {
 		interfaceController.init_des();
 		model.joueurJoueNext();
 		if (!model.getJoueurs().get(model.getJoueurJoue()).isIA()) {
@@ -203,7 +204,7 @@ public class JoueurTabController {
 	 * - la case Yahtzee est déjà remplie
 	 * - 5 dés identiques ont été de nouveau tirés
 	 */
-	void verif_yahtzee100() {
+	private void verif_yahtzee100() {
 		if (joueur.label_isNotPlayed(8, true) && !joueur.label_isNotPlayed(6, true)
 				&& !joueur.getLabels_special()[numJoueur][5].getText().equals("0")) {
 
@@ -218,7 +219,7 @@ public class JoueurTabController {
 	 *
 	 * @param score type int
 	 */
-	void verif_prime35(int score) {
+	private void verif_prime35(int score) {
 		if (joueur.label_isNotPlayed(8, false) && score >= 63) {
 			define_pts(35, 8, false);
 		}
@@ -236,13 +237,32 @@ public class JoueurTabController {
 	 *            false : tab_somme
 	 *            true : tab_special
 	 */
-	void define_pts(int pts, int row, boolean col) {
+	private void define_pts(int pts, int row, boolean col) {
 		for (Joueur joueur : model.getJoueurs()) {
 			if (!col) {
 				joueur.getLabels_somme()[numJoueur][row - 1].setText(Integer.toString(pts));
 			} else {
 				joueur.getLabels_special()[numJoueur][row - 1].setText(Integer.toString(pts));
 			}
+		}
+	}
+
+	public void color_dernierCoupMulti() {
+		if (joueur.getDernierCoup() != null) {
+			color_dernierCoup(joueur.getDernierCoup()[0], joueur.getDernierCoup()[1] == 1);
+		}
+	}
+
+	private void color_dernierCoup(int row, boolean col) {
+		joueur.setDernierCoup(new int[]{row, col ? 1 : 0});
+		for (Joueur _joueur : model.getJoueurs()) {
+			for (int i = 0; i < 7; i++) {
+				_joueur.getLabels_somme()[numJoueur][i].getStyleClass().remove("coup_joue");
+				_joueur.getLabels_special()[numJoueur][i].getStyleClass().remove("coup_joue");
+			}
+		}
+		for (Joueur _joueur : model.getJoueurs()) {
+			(!col ? _joueur.getLabels_somme() : _joueur.getLabels_special())[numJoueur][row - 1].getStyleClass().add("coup_joue");
 		}
 	}
 
@@ -291,7 +311,7 @@ public class JoueurTabController {
 	 *                 true : pour 10 lignes max(incl) (requis pour tab_special)
 	 * @return Label[][] associés
 	 */
-	Label[][] createLabel(GridPane PaneHBox, boolean spe, int nbJoueur) {
+	private Label[][] createLabel(GridPane PaneHBox, boolean spe, int nbJoueur) {
 		int col = 1;
 		int row_max = !spe ? 9 : 10;
 		int i;
@@ -324,7 +344,7 @@ public class JoueurTabController {
 	 *                 true : pour 7 lignes max(incl) (requis pour tab_special)
 	 * @return Button[]
 	 */
-	Button[] arrayGenerate_buttons(GridPane PaneHBox, boolean spe) {
+	private Button[] arrayGenerate_buttons(GridPane PaneHBox, boolean spe) {
 		//int col = 0; Différent car en JavaFX, par défaut la cellule 0 0 == null null
 		int row_max = !spe ? 6 : 7;
 		int i = 0;

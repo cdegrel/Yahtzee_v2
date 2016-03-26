@@ -60,7 +60,7 @@ public class configServerController {
 	 * Initialisation des options de la ChoiceBox
 	 * (Joueurs de 2 à 8)
 	 */
-	void initChoiceBox() {
+	private void initChoiceBox() {
 		nbJoueurs.getItems().addAll(2, 3, 4, 5, 6, 7, 8);
 		nbJoueurs.getSelectionModel().selectFirst();
 	}
@@ -73,7 +73,7 @@ public class configServerController {
 	 *                 false : retourne les 3 premiers groupes
 	 * @return type String : adresse ip
 	 */
-	String getIPlocal(boolean ipEntier) {
+	private String getIPlocal(boolean ipEntier) {
 		try {
 			String ip_adress = InetAddress.getLocalHost().getHostAddress();
 			if (ipEntier) {

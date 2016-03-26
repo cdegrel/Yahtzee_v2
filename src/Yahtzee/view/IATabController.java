@@ -29,7 +29,7 @@ public class IATabController {
 	private int numIA;                                  // Numéro du joueur
 	private IA ia;                                      // Raccourci du joueur depuis modèle
 	private InterfaceController interfaceController;    // Contrôleur maître
-	protected ArrayList<String> listCoup;
+	private ArrayList<String> listCoup;
 	/*@FXML
 	void initialize() {
 	}*/
@@ -56,9 +56,12 @@ public class IATabController {
 		listCoup.add("quatre");
 		listCoup.add("cinq");
 		listCoup.add("six");
-		listCoup.add("brelan");listCoup.add("carre");
-		listCoup.add("full");listCoup.add("petiteSuite");
-		listCoup.add("grandeSuite");listCoup.add("yahtzee");
+		listCoup.add("brelan");
+		listCoup.add("carre");
+		listCoup.add("full");
+		listCoup.add("petiteSuite");
+		listCoup.add("grandeSuite");
+		listCoup.add("yahtzee");
 
 	}
 
@@ -345,103 +348,112 @@ public class IATabController {
 		}
 		return buttons;
 	}
+
 	public void jouer() {
 
 		model.getDes().jette();
 
 		Arrays.sort(model.getDes().getDes());
 		//verif des coupd bon d'est le premier lancer
-		if(listCoup.size()!=0) {//verif si la liste est vide ou pas
+		if (listCoup.size() != 0) {//verif si la liste est vide ou pas
 
 			if (listCoup.contains("yahtzee") && model.yahtzee(model.getDes().getDes()) == 50) {
 
-				define_pts(50,6,true);
+				define_pts(50, 6, true);
 				listCoup.remove("yahtzee");//on retire de la liste
 
 			} else if (listCoup.contains("grandeSuite") && model.grandeSuite(model.getDes().getDes()) == 40) {
 
-				define_pts(40,5,true);
+				define_pts(40, 5, true);
 				listCoup.remove("grandeSuite");
 
 			} else if (listCoup.contains("petiteSuite") && model.petiteSuite(model.getDes().getDes()) == 30) {
 
-				define_pts(30,4,true);
+				define_pts(30, 4, true);
 				listCoup.remove("petiteSuite");
 
 			} else if (listCoup.contains("full") && model.full(model.getDes().getDes()) == 25) {
 
-				define_pts(25,3,true);
+				define_pts(25, 3, true);
 				listCoup.remove("full");
 
 			} else if (listCoup.contains("carre") && model.carre(model.getDes().getDes()) != 0) {
 
-				define_pts(model.carre(model.getDes().getDes()),2,true);
+				define_pts(model.carre(model.getDes().getDes()), 2, true);
 				listCoup.remove("carre");
 
 			} else if (listCoup.contains("brelan") && model.brelan(model.getDes().getDes()) != 0) {
 
-				define_pts(model.brelan(model.getDes().getDes()),1,true);
+				define_pts(model.brelan(model.getDes().getDes()), 1, true);
 				listCoup.remove("brelan");
 
-			} else if(listCoup.contains("un")||listCoup.contains("deux")||listCoup.contains("trois")//il me faut la methode pour le calcule du score
-					||listCoup.contains("quatre")||listCoup.contains("cinq")||listCoup.contains("six")){
+			} else if (listCoup.contains("un") || listCoup.contains("deux") || listCoup.contains("trois")//il me faut la methode pour le calcule du score
+					|| listCoup.contains("quatre") || listCoup.contains("cinq") || listCoup.contains("six")) {
 
 
-				if(model.getDes().getSortie(0) == 1&&//verif des 1
-						model.getDes().getSortie(0) == model.getDes().getSortie(1)&&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2)&&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
+				if (model.getDes().getSortie(0) == 1 &&//verif des 1
+						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
+						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
+						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
+						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
 
-					define_pts(ia.calculBasic(3,model.getDes().getDes()),1,false);
-					listCoup.remove(1);}
+					define_pts(ia.calculBasic(3, model.getDes().getDes()), 1, false);
+					listCoup.remove(1);
+				}
 
-				if(model.getDes().getSortie(0) == 2&&//verif des 2
-						model.getDes().getSortie(0) == model.getDes().getSortie(1)&&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2)&&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
+				if (model.getDes().getSortie(0) == 2 &&//verif des 2
+						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
+						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
+						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
+						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
 
-					define_pts(ia.calculBasic(2,model.getDes().getDes()),2,false);
-					listCoup.remove(2);}
+					define_pts(ia.calculBasic(2, model.getDes().getDes()), 2, false);
+					listCoup.remove(2);
+				}
 
-				if(model.getDes().getSortie(0) == 3&&//verif des 3
-						model.getDes().getSortie(0) == model.getDes().getSortie(1)&&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2)&&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
+				if (model.getDes().getSortie(0) == 3 &&//verif des 3
+						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
+						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
+						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
+						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
 
-					define_pts(ia.calculBasic(3,model.getDes().getDes()),3,false);
-					listCoup.remove(3);}
+					define_pts(ia.calculBasic(3, model.getDes().getDes()), 3, false);
+					listCoup.remove(3);
+				}
 
-				if(model.getDes().getSortie(0) == 4&&//verif des 4
-						model.getDes().getSortie(0) == model.getDes().getSortie(1)&&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2)&&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
+				if (model.getDes().getSortie(0) == 4 &&//verif des 4
+						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
+						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
+						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
+						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
 
-					define_pts(ia.calculBasic(4,model.getDes().getDes()),4,false);
-					listCoup.remove(4);}
+					define_pts(ia.calculBasic(4, model.getDes().getDes()), 4, false);
+					listCoup.remove(4);
+				}
 
-				if(model.getDes().getSortie(0) == 5&&//verif des 5
-						model.getDes().getSortie(0) == model.getDes().getSortie(1)&&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2)&&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
+				if (model.getDes().getSortie(0) == 5 &&//verif des 5
+						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
+						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
+						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
+						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
 
-					define_pts(ia.calculBasic(4,model.getDes().getDes()),5,false);
-					listCoup.remove(5);}
+					define_pts(ia.calculBasic(4, model.getDes().getDes()), 5, false);
+					listCoup.remove(5);
+				}
 
-				if(model.getDes().getSortie(0) == 6&&//verif des 6
-						model.getDes().getSortie(0) == model.getDes().getSortie(1)&&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2)&&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3)&&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)){
+				if (model.getDes().getSortie(0) == 6 &&//verif des 6
+						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
+						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
+						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
+						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
 
-					define_pts(ia.calculBasic(6,model.getDes().getDes()),6,false);
-					listCoup.remove(6);}
+					define_pts(ia.calculBasic(6, model.getDes().getDes()), 6, false);
+					listCoup.remove(6);
+				}
 
-			}else{System.out.println("Ia ne sait plus quoi faire");}
+			} else {
+				System.out.println("Ia ne sait plus quoi faire");
+			}
 
 		}
 	}
