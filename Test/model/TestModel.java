@@ -71,6 +71,8 @@ public class TestModel {
 		Assert.assertEquals(30, model.petiteSuite(des));
 		des = new int[]{6, 5, 3, 4, 1};
 		Assert.assertEquals(30, model.petiteSuite(des));
+		des = new int[]{1, 2, 5, 5, 6};
+		Assert.assertEquals(0, model.petiteSuite(des));
 	}
 
 	@Test

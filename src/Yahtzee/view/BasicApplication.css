@@ -8,11 +8,6 @@
 	-fx-text-fill: #595959;
 }
 
-.menu-bar .menu .label {
-	-fx-text-fill: #848484;
-	/*-fx-background-color:red;*/
-}
-
 #file_menu, #aide_menu { /* Censé être le menu parent "File, Aide" (ne fonctionne apparemment pas */
 	-fx-text-fill: #fff;
 	-fx-background-color: none;
@@ -78,7 +73,7 @@
 
 .coup_joue {
 	-fx-font-weight: bold;
-	-fx-text-fill: #770000;
+	-fx-text-fill: #a80000;
 	-fx-font-size: 90%;
 }
 

@@ -2,6 +2,7 @@ package Yahtzee.view;
 
 import Yahtzee.Main;
 import Yahtzee.model.Model;
+import Yahtzee.util.IA;
 import Yahtzee.util.Joueur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -116,6 +117,8 @@ public class JoueurTabController {
 		model.joueurJoueNext();
 		if (!model.getJoueurs().get(model.getJoueurJoue()).isIA()) {
 			model.getJoueurs().get(model.getJoueurJoue()).getJoueurController().activeNotPlayedButtons();
+		} else {
+			((IA) model.getJoueurs().get(model.getJoueurJoue())).getIAController().tourIA();
 		}
 		interfaceController.basculeTab(model.getJoueurJoue());
 	}
@@ -247,12 +250,25 @@ public class JoueurTabController {
 		}
 	}
 
+	/**
+	 * Applique un style css particulier au dernier label joué
+	 */
 	public void color_dernierCoupMulti() {
 		if (joueur.getDernierCoup() != null) {
 			color_dernierCoup(joueur.getDernierCoup()[0], joueur.getDernierCoup()[1] == 1);
 		}
 	}
 
+	/**
+	 * Applique un style css particulier au label désigné
+	 *
+	 * @param row type int
+	 *            ligne concernée (valeur absolue/+1)
+	 * @param col type boolean
+	 *            colonne concernée
+	 *            false : tab_somme
+	 *            true : tab_special
+	 */
 	private void color_dernierCoup(int row, boolean col) {
 		joueur.setDernierCoup(new int[]{row, col ? 1 : 0});
 		for (Joueur _joueur : model.getJoueurs()) {
@@ -311,6 +327,7 @@ public class JoueurTabController {
 	 *                 true : pour 10 lignes max(incl) (requis pour tab_special)
 	 * @return Label[][] associés
 	 */
+	@SuppressWarnings("Duplicates")
 	private Label[][] createLabel(GridPane PaneHBox, boolean spe, int nbJoueur) {
 		int col = 1;
 		int row_max = !spe ? 9 : 10;
@@ -344,6 +361,7 @@ public class JoueurTabController {
 	 *                 true : pour 7 lignes max(incl) (requis pour tab_special)
 	 * @return Button[]
 	 */
+	@SuppressWarnings("Duplicates")
 	private Button[] arrayGenerate_buttons(GridPane PaneHBox, boolean spe) {
 		//int col = 0; Différent car en JavaFX, par défaut la cellule 0 0 == null null
 		int row_max = !spe ? 6 : 7;

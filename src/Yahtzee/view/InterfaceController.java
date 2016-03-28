@@ -199,7 +199,7 @@ public class InterfaceController {
 		if (nbJoueur == 1) {
 			Tab tab_ia = new Tab("IA");
 			tabpane.getTabs().add(tab_ia);
-			model.getJoueurs().add(new IA(tab_ia, 1));
+			model.getJoueurs().add(new IA(tab_ia, 1, model));
 		}
 		for (Joueur joueur : model.getJoueurs()) {
 			if (!joueur.isIA()) {

@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class IATabController {
@@ -29,7 +28,14 @@ public class IATabController {
 	private int numIA;                                  // Numéro du joueur
 	private IA ia;                                      // Raccourci du joueur depuis modèle
 	private InterfaceController interfaceController;    // Contrôleur maître
-	private ArrayList<String> listCoup;
+
+	private int validerChoixIA;
+	private int deIA[] = new int[5];
+	private int choixIA[] = new int[13];
+	private int scoreIAvalide[] = new int[13];
+	private int scorezero[] = new int[13];
+	private int deInterval[] = new int[6];
+
 	/*@FXML
 	void initialize() {
 	}*/
@@ -42,33 +48,19 @@ public class IATabController {
 	 *              numéro du joueur
 	 */
 	public void init_data(Model model, int numIA, InterfaceController interfaceController) {
+		System.out.println("MODE IA");
 		this.model = model;
 		this.numIA = numIA;
 		this.interfaceController = interfaceController;
 		Bso = arrayGenerate_buttons(tab_somme, false);
 		Bsp = arrayGenerate_buttons(tab_special, true);
 		if (numIA != 0) disableAllButtons();
-		listCoup = new ArrayList<>();//(liste comprenant toutes les combi
-		listCoup.add("chance");
-		listCoup.add("un");
-		listCoup.add("deux");
-		listCoup.add("trois");
-		listCoup.add("quatre");
-		listCoup.add("cinq");
-		listCoup.add("six");
-		listCoup.add("brelan");
-		listCoup.add("carre");
-		listCoup.add("full");
-		listCoup.add("petiteSuite");
-		listCoup.add("grandeSuite");
-		listCoup.add("yahtzee");
-
 	}
 
 	/**
 	 * Appelé après la création de tous les joueurs
 	 */
-	public void init_data_after_JoueurList() {
+	void init_data_after_JoueurList() {
 		ia = (IA) model.getJoueurs().get(numIA);
 		ia.setLabels_somme(createLabel(tab_somme, false, model.getNbJoueurs()));
 		ia.setLabels_special(createLabel(tab_special, true, model.getNbJoueurs()));
@@ -77,41 +69,20 @@ public class IATabController {
 	/**
 	 * ActionEvent appelé lors d'une interaction avec
 	 * un bouton somme ou spécial
-	 * Automatisme du jeu
 	 *
 	 * @param event type ActionEvent
 	 */
 	@FXML
 	void ActionEvent(ActionEvent event) {
-		String[] butPressed = ((Button) event.getSource()).getId().split("_");
-		boolean col = !butPressed[0].equals("Bso");
-		int row = Integer.parseInt(butPressed[1]);
+	}
 
-		if (model.getDes().getLancer() != 0 && ia.label_isNotPlayed(row, col)) {
-			int pts;
-			if (!col) {
-				pts = model.joueSomme(row, interfaceController.getDes());
-			} else {
-				String[] func = new String[]{"brelan", "carre", "full", "petiteSuite", "grandeSuite", "yahtzee", "chance"};
-				pts = model.joueSpecial(func[row - 1], interfaceController.getDes());
-			}
-
-			verif_yahtzee100();
-			define_pts(pts, row, col);
-
-			if (!col) {
-				Somme_ScoreAndSousTotal();
-			} else {
-				Special_SousTotal();
-			}
-
-			Total_score();
-			disableAllButtons();
-
-			if (!verif_partieFinie()) {
-				nextJoueur();
-			}
-		}
+	/**
+	 * Automatisme du jeu
+	 */
+	void tourIA() {
+		System.out.print("-------- Tour IA --------");
+		jouer();
+		nextJoueur();
 	}
 
 	/**
@@ -120,12 +91,11 @@ public class IATabController {
 	 * - Réactive les boutons d'actions (non joués)
 	 * - Bascule la vue sur sa grille
 	 */
-	void nextJoueur() {
+
+	private void nextJoueur() {
 		interfaceController.init_des();
 		model.joueurJoueNext();
-		if (!model.getJoueurs().get(model.getJoueurJoue()).isIA()) {
-			model.getJoueurs().get(model.getJoueurJoue()).getJoueurController().activeNotPlayedButtons();
-		}
+		model.getJoueurs().get(model.getJoueurJoue()).getJoueurController().activeNotPlayedButtons();
 		interfaceController.basculeTab(model.getJoueurJoue());
 	}
 
@@ -135,7 +105,7 @@ public class IATabController {
 	 *
 	 * @return type boolean
 	 */
-	boolean verif_partieFinie() {
+	private boolean verif_partieFinie() {
 		for (int i = 0; i < ia.getLabels_somme()[numIA].length - 3; i++) {
 			if (ia.label_isNotPlayed(i + 1, false)) {
 				return false;
@@ -161,7 +131,7 @@ public class IATabController {
 	 * Mise à jour du score Total
 	 * (calcul/sauvegarde/affichage)
 	 */
-	void Total_score() {
+	private void Total_score() {
 		ia.setscoreTotal(ia.getScoreSomme() + ia.getscoreSpecial());
 		Total_final_pts.setText(Integer.toString(ia.getscoreTotal()) + " pts");
 	}
@@ -170,7 +140,7 @@ public class IATabController {
 	 * Calcul est met à jour en conséquence
 	 * le sous-total de la partie spécial
 	 */
-	void Special_SousTotal() {
+	private void Special_SousTotal() {
 		int i = 0, score = 0;
 		for (Label label : ia.getLabels_special()[numIA]) {
 			if (!ia.label_isNotPlayed(i + 1, true) && i != 8) {
@@ -188,7 +158,7 @@ public class IATabController {
 	 * et sous-total de la partie somme
 	 * Appel la vérification de la prime de 35 (verif_prime35())
 	 */
-	void Somme_ScoreAndSousTotal() {
+	private void Somme_ScoreAndSousTotal() {
 		int i = 0, score = 0;
 		for (Label label : ia.getLabels_somme()[numIA]) {
 			if (!ia.label_isNotPlayed(i + 1, false) && i != 6 && i != 8) {
@@ -209,7 +179,7 @@ public class IATabController {
 	 * - la case Yahtzee est déjà remplie
 	 * - 5 dés identiques ont été de nouveau tirés
 	 */
-	void verif_yahtzee100() {
+	private void verif_yahtzee100() {
 		if (ia.label_isNotPlayed(8, true) && !ia.label_isNotPlayed(6, true)
 				&& !ia.getLabels_special()[numIA][5].getText().equals("0")) {
 
@@ -224,7 +194,7 @@ public class IATabController {
 	 *
 	 * @param score type int
 	 */
-	void verif_prime35(int score) {
+	private void verif_prime35(int score) {
 		if (ia.label_isNotPlayed(8, false) && score >= 63) {
 			define_pts(35, 8, false);
 		}
@@ -242,7 +212,7 @@ public class IATabController {
 	 *            false : tab_somme
 	 *            true : tab_special
 	 */
-	void define_pts(int pts, int row, boolean col) {
+	private void define_pts(int pts, int row, boolean col) {
 		for (Joueur joueur : model.getJoueurs()) {
 			if (!col) {
 				joueur.getLabels_somme()[numIA][row - 1].setText(Integer.toString(pts));
@@ -253,9 +223,32 @@ public class IATabController {
 	}
 
 	/**
+	 * Applique un style css particulier au label désigné
+	 *
+	 * @param row type int
+	 *            ligne concernée (valeur absolue/+1)
+	 * @param col type boolean
+	 *            colonne concernée
+	 *            false : tab_somme
+	 *            true : tab_special
+	 */
+	private void color_dernierCoup(int row, boolean col) {
+		ia.setDernierCoup(new int[]{row, col ? 1 : 0});
+		for (Joueur _joueur : model.getJoueurs()) {
+			for (int i = 0; i < 7; i++) {
+				_joueur.getLabels_somme()[numIA][i].getStyleClass().remove("coup_joue");
+				_joueur.getLabels_special()[numIA][i].getStyleClass().remove("coup_joue");
+			}
+		}
+		for (Joueur _joueur : model.getJoueurs()) {
+			(!col ? _joueur.getLabels_somme() : _joueur.getLabels_special())[numIA][row - 1].getStyleClass().add("coup_joue");
+		}
+	}
+
+	/**
 	 * Active les boutons sommes/spéciaux encore non joués
 	 */
-	void activeNotPlayedButtons() {
+	/*void activeNotPlayedButtons() {
 		int i = 1;
 		for (Button but : Bso) {
 			if (ia.label_isNotPlayed(i, false)) {
@@ -271,12 +264,12 @@ public class IATabController {
 			}
 			i++;
 		}
-	}
+	}*/
 
 	/**
 	 * Désactive tous les boutons sommes/spéciaux du joueur
 	 */
-	void disableAllButtons() {
+	private void disableAllButtons() {
 		for (Button but : Bso) {
 			but.setDisable(true);
 		}
@@ -297,7 +290,8 @@ public class IATabController {
 	 *                 true : pour 10 lignes max(incl) (requis pour tab_special)
 	 * @return Label[][] associés
 	 */
-	Label[][] createLabel(GridPane PaneHBox, boolean spe, int nbJoueur) {
+	@SuppressWarnings("Duplicates")
+	private Label[][] createLabel(GridPane PaneHBox, boolean spe, int nbJoueur) {
 		int col = 1;
 		int row_max = !spe ? 9 : 10;
 		int i;
@@ -330,7 +324,8 @@ public class IATabController {
 	 *                 true : pour 7 lignes max(incl) (requis pour tab_special)
 	 * @return Button[]
 	 */
-	Button[] arrayGenerate_buttons(GridPane PaneHBox, boolean spe) {
+	@SuppressWarnings("Duplicates")
+	private Button[] arrayGenerate_buttons(GridPane PaneHBox, boolean spe) {
 		//int col = 0; Différent car en JavaFX, par défaut la cellule 0 0 == null null
 		int row_max = !spe ? 6 : 7;
 		int i = 0;
@@ -349,114 +344,446 @@ public class IATabController {
 		return buttons;
 	}
 
-	public void jouer() {
+	@SuppressWarnings("Duplicates")
+	private void jouer() {
+		System.out.println();
+		model.getDes().jette();
+		Arrays.sort(model.getDes().getDes());
+		//Fonctionnement de l'IA visible e, détail dans le terminal
 
 		model.getDes().jette();
 
-		Arrays.sort(model.getDes().getDes());
-		//verif des coupd bon d'est le premier lancer
-		if (listCoup.size() != 0) {//verif si la liste est vide ou pas
+		//Lance les dés et les tries
+		System.arraycopy(model.getDes().getDes(), 0, deIA, 0, 5);
+		Arrays.sort(deIA);
 
-			if (listCoup.contains("yahtzee") && model.yahtzee(model.getDes().getDes()) == 50) {
+		for (int number : deIA) {
+			System.out.print(number + "/");
+		}
+		System.out.println(" dés IA trié");
 
-				define_pts(50, 6, true);
-				listCoup.remove("yahtzee");//on retire de la liste
+		Arrays.fill(choixIA, 0);
 
-			} else if (listCoup.contains("grandeSuite") && model.grandeSuite(model.getDes().getDes()) == 40) {
+		while (model.getDes().getLancer() < 2) {
 
-				define_pts(40, 5, true);
-				listCoup.remove("grandeSuite");
+			model.getDes().jette();
+			model.getDes().incremLanceNum();
+			ia.choixdeIA(deIA, choixIA);
 
-			} else if (listCoup.contains("petiteSuite") && model.petiteSuite(model.getDes().getDes()) == 30) {
+			if (choixIA[10] != 0) {
+				System.out.println("Grande Suite");
+				if (scoreIAvalide[10] == 0 && scorezero[10] == 0) {                        // si Grande suite pas fait alors enregistre Grande Suite
+					System.out.println("Enregistre Grande Suite");
 
-				define_pts(30, 4, true);
-				listCoup.remove("petiteSuite");
+				} else if (scoreIAvalide[9] == 0 && scorezero[9] == 0) {                        // si Petite suite pas fait alors enregistre
+					System.out.println("Enregistre Petite Suite");
 
-			} else if (listCoup.contains("full") && model.full(model.getDes().getDes()) == 25) {
-
-				define_pts(25, 3, true);
-				listCoup.remove("full");
-
-			} else if (listCoup.contains("carre") && model.carre(model.getDes().getDes()) != 0) {
-
-				define_pts(model.carre(model.getDes().getDes()), 2, true);
-				listCoup.remove("carre");
-
-			} else if (listCoup.contains("brelan") && model.brelan(model.getDes().getDes()) != 0) {
-
-				define_pts(model.brelan(model.getDes().getDes()), 1, true);
-				listCoup.remove("brelan");
-
-			} else if (listCoup.contains("un") || listCoup.contains("deux") || listCoup.contains("trois")//il me faut la methode pour le calcule du score
-					|| listCoup.contains("quatre") || listCoup.contains("cinq") || listCoup.contains("six")) {
-
-
-				if (model.getDes().getSortie(0) == 1 &&//verif des 1
-						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
-
-					define_pts(ia.calculBasic(3, model.getDes().getDes()), 1, false);
-					listCoup.remove(1);
+				} else {
+					System.out.println("Pas de possibilité");
+					System.arraycopy(model.getDes().getDes(), 0, deIA, 0, 4);
 				}
 
-				if (model.getDes().getSortie(0) == 2 &&//verif des 2
-						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
+			} else if (choixIA[9] != 0) {
+				System.out.println("Petite Suite");
+				if (scoreIAvalide[10] == 0 && scorezero[10] == 0) {                        // si Grande suite pas fait alors relance dé
+					System.out.println("Test Grande Suite");
+					ia.rangedeintermediaire(deIA);
+					if (deIA[0] != deIA[1] - 1) {
+						deIA[0] = model.getDes().getDes()[0];
+					} else {
+						deIA[4] = model.getDes().getDes()[4];
+					}
 
-					define_pts(ia.calculBasic(2, model.getDes().getDes()), 2, false);
-					listCoup.remove(2);
+				} else if (scoreIAvalide[9] == 0 && scorezero[9] == 0) {                        // si Petite suite pas fait alors enregistre
+					System.out.println("Enregistre Petite Suite");
+
+				} else {
+					System.out.println("Pas de possibilité");
+					System.arraycopy(model.getDes().getDes(), 0, deIA, 0, 4);
 				}
 
-				if (model.getDes().getSortie(0) == 3 &&//verif des 3
-						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
+			} else if (choixIA[11] != 0) {  //si Yahtzee
+				System.out.println("Yahtzee");
 
-					define_pts(ia.calculBasic(3, model.getDes().getDes()), 3, false);
-					listCoup.remove(3);
+				if (scoreIAvalide[11] == 0 && scorezero[11] == 0) {  // si yahtzee pas fait alors enregistrer yahtzee
+					System.out.println("Enregistre Yahtzee");
+
+				} else if (scoreIAvalide[7] == 0 && scorezero[7] == 0) { // si carre pas fait alors enregistrer carre
+					System.out.println("Enregistre Carre");
+
+				} else if (scoreIAvalide[6] == 0 && scorezero[6] == 0) { // si brelan pas fait alors enregistrer brelan
+					System.out.println("Enregistre Brelan");
+
+				} else if (scoreIAvalide[8] == 0 && scorezero[8] == 0) {  //si full pas fait alors tente full
+					System.out.println("Relance deux dés tente Full");
+					deIA[0] = model.getDes().getDes()[0];
+					deIA[1] = model.getDes().getDes()[1];
+
+				} else if (scoreIAvalide[deIA[2]] == 0) { // si valeur unique pas fait alors enregistre
+					System.out.println("Enregistre valeur dé : " + deIA[2]);
+				} else {
+					System.out.println("Pas de possibilité");
 				}
 
-				if (model.getDes().getSortie(0) == 4 &&//verif des 4
-						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
+			} else if (choixIA[7] != 0) {    // si carre
+				System.out.println("Carre");
 
-					define_pts(ia.calculBasic(4, model.getDes().getDes()), 4, false);
-					listCoup.remove(4);
+				if (scoreIAvalide[11] == 0 && scorezero[11] == 0) {  // si yahtzee pas fait alors rejeter un dé
+					//rejeter unique dé différent
+					System.out.println("Rejeter un dé pour Yahtzee");
+
+					if (scoreIAvalide[deIA[2] - 1] != 0 && (scoreIAvalide[7] != 0 || scorezero[7] == 0)) {
+						System.arraycopy(model.getDes().getDes(), 0, deIA, 0, 5);
+					} else if (deIA[0] != deIA[1]) {
+						deIA[0] = model.getDes().getDes()[0];
+					} else {
+						deIA[4] = model.getDes().getDes()[4];
+					}
+
+				} else if (scoreIAvalide[7] == 0 && scorezero[7] == 0) { // si carre pas fait alors enregistrer carre
+					if (choixIA[7] >= 13) {
+						System.out.println("Enregistre Carre");
+
+					} else if (scoreIAvalide[deIA[2] - 1] == 0) {
+						System.out.println("Enregistre " + (deIA[2] - 1));
+						choixIA[deIA[2] - 1] = deIA[2] * 4;
+					}
+
+				} else if (scoreIAvalide[8] == 0 && scorezero[8] == 0) {        //si full pas fait alors tente full
+					System.out.println("Relance un dé tente Full");
+					deIA[2] = model.getDes().getDes()[2];
+
+				} else if (scoreIAvalide[6] == 0 && scorezero[6] == 0) { // si brelan pas fait alors enregistrer brelan
+					System.out.println("Enregistre Brelan");
+
+				} else if (scoreIAvalide[deIA[2] - 1] == 0) { // si valeur unique pas fait alors enregistre
+					if (deIA[0] != deIA[2]) {
+						deIA[0] = model.getDes().getDes()[0];
+					} else {
+						deIA[4] = model.getDes().getDes()[4];
+					}
+				} else {
+					System.out.println("Pas de possibilité");
 				}
 
-				if (model.getDes().getSortie(0) == 5 &&//verif des 5
-						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
+			} else if (choixIA[8] != 0) {    // si full
+				System.out.println("Full");
 
-					define_pts(ia.calculBasic(4, model.getDes().getDes()), 5, false);
-					listCoup.remove(5);
+				if (scoreIAvalide[8] == 0 && scorezero[8] == 0) {  //si full pas fait alors enregistre full
+					System.out.println("Enregistre Full");
+
+				} else if ((scoreIAvalide[11] == 0 && scorezero[11] == 0) || (scoreIAvalide[7] == 0 && scorezero[7] == 0)) {
+					// si yahtzee ou carré pas fait alors rejeter dés
+					//rejeter unique dé différent
+					System.out.println("Rejeter deux dés pour Yahtzee");
+
+					if (deIA[1] != deIA[2]) {
+						deIA[0] = model.getDes().getDes()[0];
+						deIA[1] = model.getDes().getDes()[1];
+					} else {
+						deIA[3] = model.getDes().getDes()[3];
+						deIA[4] = model.getDes().getDes()[4];
+					}
+
+				} else if (scoreIAvalide[6] == 0 && scorezero[6] == 0) { // si brelan pas fait alors enregistrer brelan
+					System.out.println("Enregistre Brelan");
+
+				} else if (scoreIAvalide[deIA[2] - 1] == 0) { // si valeur unique pas fait alors enregistre
+					ia.valeuruniquede(scoreIAvalide, scorezero, deIA);
+				} else {
+					System.out.println("Pas de possibilité");
 				}
 
-				if (model.getDes().getSortie(0) == 6 &&//verif des 6
-						model.getDes().getSortie(0) == model.getDes().getSortie(1) &&
-						model.getDes().getSortie(1) == model.getDes().getSortie(2) &&
-						model.getDes().getSortie(2) == model.getDes().getSortie(3) &&
-						model.getDes().getSortie(3) == model.getDes().getSortie(4)) {
+			} else if (choixIA[6] != 0) { // si brelan
+				System.out.println("Brelan");
 
-					define_pts(ia.calculBasic(6, model.getDes().getDes()), 6, false);
-					listCoup.remove(6);
+				if (scoreIAvalide[11] == 0 && scorezero[11] == 0) {  // si yahtzee pas fait alors rejeter un dé
+					//rejeter unique dé différent
+					System.out.println("Rejeter deux dés pour Yahtzee");
+					for (int j = 0; j < 5; j++) {
+						if (deIA[j] != deIA[2]) {
+							deIA[j] = model.getDes().getDes()[j];
+						}
+					}
+
+				} else if (scoreIAvalide[7] == 0 && scorezero[7] == 0) { // si carre pas fait alors enregistrer carre
+					System.out.println("Rejeter deux dés pour Carre");
+					for (int j = 0; j < 5; j++) {
+						if (deIA[j] != deIA[2]) {
+							deIA[j] = model.getDes().getDes()[j];
+						}
+					}
+
+				} else if (scoreIAvalide[8] == 0 && scorezero[8] == 0) {  //si full pas fait alors enregistre full
+					System.out.println("Enregistre Full");
+
+				} else if (scoreIAvalide[6] == 0 && scorezero[6] == 0) { // si brelan pas fait alors enregistrer brelan
+					System.out.println("Enregistre Brelan");
+
+				} else if (scoreIAvalide[deIA[2] - 1] == 0) { // si valeur unique pas fait alors enregistre
+					ia.valeuruniquede(scoreIAvalide, scorezero, deIA);
+
+				} else {
+					System.out.println("Pas de possibilité");
 				}
 
-			} else {
-				System.out.println("Ia ne sait plus quoi faire");
+			} else {    //si aucune combinaison possible
+				ia.rangedeintermediaire(deIA);
+
+				boolean suitepossible = false;
+				boolean gsuitepossible = false;
+				boolean fullpossible = false;
+				int nombredouble = 0;
+				int nombredouble2 = 0;
+
+				// Test si suite et grande suite SERONT possible
+				for (int i = 0; i < 2; i++) {
+					if (deIA[i] == deIA[i + 1] - 1 && deIA[i + 1] == deIA[i + 2] - 1 && deIA[i + 2] == deIA[i + 3] - 1) {
+						gsuitepossible = true;
+					}
+				}
+				if (deIA[0] == 1 && deIA[1] == 2 && deIA[2] == 3 && deIA[3] == 5 && deIA[4] == 6) {
+					gsuitepossible = true;
+				}
+				if (deIA[0] == 1 && deIA[1] == 2 && deIA[2] == 4 && deIA[3] == 5 && deIA[4] == 6) {
+					gsuitepossible = true;
+				}
+				for (int i = 0; i < 3; i++) {
+					if (deIA[i] == deIA[i + 1] - 1 && deIA[i + 1] == deIA[i + 2] - 1) {
+						suitepossible = true;
+					}
+				}
+
+				Arrays.sort(deIA);
+				for (int i = 0; i < 4; i++) {
+					if (deIA[i] == deIA[i + 1]) {
+						nombredouble = deIA[i];
+					}
+				}
+				for (int i = 0; i < 4; i++) {
+					if (deIA[i] == deIA[i + 1] && deIA[i] != nombredouble) {
+						nombredouble2 = deIA[i];
+					}
+				}
+
+				System.out.println("Nombre double = " + nombredouble + " et " + nombredouble2);
+				if (nombredouble != 0 && nombredouble2 != 0 && scoreIAvalide[8] == 0 && scorezero[8] == 0) {
+					fullpossible = true;
+				}
+
+				if (fullpossible && (scoreIAvalide[8] != 0 || scorezero[8] == 1)) {
+					Arrays.sort(deIA);
+					for (int i = 0; i < 5; i++) {
+						if (deIA[i] == nombredouble && scoreIAvalide[nombredouble - 1] != 0) {
+							deIA[i] = model.getDes().getDes()[i];
+						} else if (deIA[i] == nombredouble2 && scoreIAvalide[nombredouble2 - 1] != 0) {
+							deIA[i] = model.getDes().getDes()[i];
+						}
+					}
+
+				} else if (fullpossible) {   //test full
+					Arrays.sort(deIA);
+					System.out.println("Rejete dé Full possible");
+
+					for (int i = 0; i < 5; i++) {
+						if (scoreIAvalide[11] != 0 && scoreIAvalide[8] != 0 && scoreIAvalide[6] != 0 && deIA[nombredouble] != 0) {
+							deIA[i] = model.getDes().getDes()[i];
+						} else if (scoreIAvalide[11] != 0 && scoreIAvalide[8] != 0 && scoreIAvalide[6] != 0 && deIA[nombredouble2] != 0) {
+							deIA[i] = model.getDes().getDes()[i];
+						}
+						if (deIA[i] != nombredouble && deIA[i] != nombredouble2) {
+							deIA[i] = model.getDes().getDes()[i];
+						}
+					}
+
+				} else if (gsuitepossible && scoreIAvalide[10] == 0 && scorezero[10] == 0) {       // test grande suite
+					System.out.println("Grande Suite possibe");
+
+					if (deIA[0] != deIA[1] - 1) {
+						deIA[0] = model.getDes().getDes()[0];
+					} else {
+						deIA[4] = model.getDes().getDes()[4];
+					}
+
+				} else if (suitepossible && scoreIAvalide[9] == 0 && scorezero[9] == 0 && scoreIAvalide[10] != 0 && scorezero[10] == 0) {        //test suite ou grande suite
+					System.out.println("Suite possibe");
+
+					if ((deIA[0] == deIA[1] - 1) && (deIA[1] == deIA[2] - 1)) {
+						deIA[3] = model.getDes().getDes()[3];
+						deIA[4] = model.getDes().getDes()[4];
+					} else if ((deIA[1] == deIA[2] - 1) && (deIA[2] == deIA[3] - 1)) {
+						deIA[0] = model.getDes().getDes()[0];
+						deIA[4] = model.getDes().getDes()[4];
+					} else {
+						deIA[0] = model.getDes().getDes()[0];
+						deIA[1] = model.getDes().getDes()[1];
+					}
+
+				} else if (nombredouble != 0) {
+					Arrays.sort(deIA);
+					System.out.println("Relance car rien !");
+					ia.valeuruniquede(scoreIAvalide, scorezero, deIA);
+
+					if (scoreIAvalide[nombredouble - 1] != 0 && scorezero[nombredouble - 1] == 0 && scoreIAvalide[11] == 0 && scorezero[11] == 0 && scoreIAvalide[7] == 0 && scorezero[7] == 0
+							&& scoreIAvalide[6] == 0 && scorezero[6] == 0 && scoreIAvalide[8] == 0 && scorezero[8] == 0) {
+						System.arraycopy(model.getDes().getDes(), 0, deIA, 0, 5);
+
+					} else {
+						for (int i = 0; i < 5; i++) {
+							if (deIA[i] != nombredouble) {
+								deIA[i] = model.getDes().getDes()[i];
+							}
+						}
+					}
+
+				} else if (scoreIAvalide[10] != 0 && scoreIAvalide[9] != 0) {
+					System.out.println("Rien à faire");
+				}
 			}
 
+			ia.choixdeIA(deIA, choixIA);
+			for (int number : deIA) {
+				System.out.print(number + "/");
+			}
+			System.out.println(" dés IA trié 2");
 		}
+
+		for (int i = 0; i < 6; i++) {
+			deInterval[i] = (choixIA[i] / (i + 1));
+			System.out.print(deInterval[i] + "-");
+		}
+		System.out.println(" Dé plusieurs fois tiré");
+
+		boolean validerchoix = false;
+		int valeurIA = 0;
+		ia.choixdeIA(deIA, choixIA);
+
+		//Cherche la combinaison de la plus dur à plus simple
+		if (scoreIAvalide[deIA[2] - 1] == 0 && scorezero[deIA[2] - 1] == 0 && choixIA[7] <= 13 && choixIA[7] != 0) {
+			scoreIAvalide[deIA[2] - 1] = deIA[2] * 4;
+			validerChoixIA = deIA[2];     //Choix de la combinaison validé
+			valeurIA = scoreIAvalide[deIA[2] - 1];  //Valeur combinaison validé
+			validerchoix = true;
+
+		} else if (scoreIAvalide[7] == 0 && scorezero[7] == 0 && choixIA[7] != 0) {
+			scoreIAvalide[7] = choixIA[7];
+			validerChoixIA = 8;     //Choix de la combinaison validé
+			valeurIA = choixIA[7];  //Valeur combinaison validé
+			validerchoix = true;
+		}
+
+		for (int i = 11; i >= 6; i--) {
+			if ((scoreIAvalide[i] == 0) && (choixIA[i] != 0) && (!validerchoix) && (scorezero[i] == 0)) {
+				scoreIAvalide[i] = choixIA[i];
+				validerChoixIA = i + 1;     //Choix de la combinaison validé
+				valeurIA = scoreIAvalide[i];  //Valeur combinaison validé
+				validerchoix = true;
+			}
+		}
+
+		//Si pas de combinaison trouvé alors ajoute valeur à dé unique du plus petit au plus grand
+		for (int i = 0; i < 6; i++) {
+			if (!validerchoix && scoreIAvalide[i] == 0 && choixIA[i] != 0 && deInterval[i] > 1 && (scorezero[i] == 0)) { //sinon enregistre plus petit dé
+				scoreIAvalide[i] = choixIA[i];
+				validerChoixIA = i + 1;     //Choix de la combinaison validé
+				valeurIA = scoreIAvalide[i];  //Valeur combinaison validé
+				validerchoix = true;
+			}
+		}
+
+		// Condition pour enregistrer en chance ou non
+		for (int i = 0; i < 6; i++) {
+			if (!validerchoix && scoreIAvalide[i] == 0 && choixIA[i] != 0 && scorezero[i] == 0) { //sinon enregistre plus petit dé
+				if (choixIA[12] >= 15 && scoreIAvalide[12] == 0) {
+					System.out.println(" Chance");
+					scoreIAvalide[12] = choixIA[12];
+					validerChoixIA = 13;     //Choix de la combinaison validé
+					valeurIA = scoreIAvalide[12];  //Valeur combinaison validé
+					validerchoix = true;
+				} else if (choixIA[12] < 15 && choixIA[i] != 0 && scorezero[i] == 0) {
+					scoreIAvalide[i] = choixIA[i];
+					validerChoixIA = i + 1;     //Choix de la combinaison validé
+					valeurIA = scoreIAvalide[i];  //Valeur combinaison validé
+					validerchoix = true;
+				} else if (scoreIAvalide[12] != 0) {
+					scoreIAvalide[i] = choixIA[i];
+					validerChoixIA = i + 1;     //Choix de la combinaison validé
+					valeurIA = scoreIAvalide[i];  //Valeur combinaison validé
+					validerchoix = true;
+				}
+			}
+		}
+
+		if (!validerchoix && (scoreIAvalide[12] != 0)) {
+			if (scoreIAvalide[10] == 0 && scorezero[10] == 0 && scoreIAvalide[9] == 0 && scorezero[9] == 0) {
+				validerChoixIA = 11;
+				scorezero[10] = 1;
+				scoreIAvalide[10] = 0;
+				valeurIA = 0;
+				validerchoix = true;
+			}
+
+			for (int i = 0; i < 6; i++) {
+				if (!validerchoix && scoreIAvalide[i] == 0 && scorezero[i] == 0) {
+					scorezero[i] = 1;
+					validerChoixIA = i + 1;
+					scoreIAvalide[i] = 0;
+					valeurIA = 0;
+					validerchoix = true;
+				}
+			}
+			for (int i = 12; i >= 6; i--) {
+				if (!validerchoix && scoreIAvalide[i] == 0 && scorezero[i] == 0) {
+					scorezero[i] = 1;
+					validerChoixIA = i + 1;
+					scoreIAvalide[i] = 0;
+					valeurIA = 0;
+					validerchoix = true;
+				}
+			}
+		}
+
+		if (!validerchoix && (scoreIAvalide[12] == 0)) {
+			scoreIAvalide[12] = choixIA[12];
+			validerChoixIA = 13;     //Choix de la combinaison validé
+			valeurIA = scoreIAvalide[12];  //Valeur combinaison validé
+			validerchoix = true;
+		}
+
+		//Sélection du choix de l'IA
+		for (int i = 0; i < 13; i++) {
+			System.out.print(choixIA[i] + "/");
+		}
+		System.out.print(" -> Possibilité IA \n");
+
+		for (int i = 0; i < 13; i++) {
+			System.out.print(scoreIAvalide[i] + "/");
+		}
+		System.out.print(" -> Score IA déjà valide enregistré \n");
+
+		// Enregistrement choix IA
+		if (validerchoix) {
+			System.out.println("Enregistrement de la combinaison " + validerChoixIA + " à la valeur " + valeurIA + ".");
+
+			if (validerChoixIA < 7) {
+				define_pts(valeurIA, validerChoixIA, false);
+				color_dernierCoup(validerChoixIA, false);
+
+			} else {
+				validerChoixIA = validerChoixIA - 6;
+				define_pts(valeurIA, validerChoixIA, true);
+				color_dernierCoup(validerChoixIA, true);
+			}
+		}
+
+		verif_yahtzee100();
+		Special_SousTotal();
+		Somme_ScoreAndSousTotal();
+		Total_score();
+
+		Total_final_pts.setText(Integer.toString(ia.getscoreTotal()) + " pts");
+		System.out.println("IA fin \n");
+		verif_partieFinie();
+
 	}
-
-
 }

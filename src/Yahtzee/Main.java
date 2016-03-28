@@ -1,5 +1,6 @@
 package Yahtzee;
 
+import Yahtzee.img.img;
 import Yahtzee.model.Model;
 import Yahtzee.view.*;
 import javafx.application.Application;
@@ -10,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -43,6 +45,7 @@ public class Main extends Application {
 			interfaceController = loader.getController();
 			interfaceController.init_data(model);
 			primaryStage.setTitle("Yahtzee");
+			primaryStage.getIcons().add(new Image(img.class.getResourceAsStream("icon.png")));
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				@Override
 				public void handle(WindowEvent event) {
@@ -93,6 +96,7 @@ public class Main extends Application {
 			root = FXMLLoader.load(Main.class.getResource("view/PopUp_about.fxml"));
 			stage.setScene(new Scene(root));
 			stage.setTitle("À propos");
+			stage.getIcons().add(new Image(img.class.getResourceAsStream("icon.png")));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setResizable(false);
 			//stage.initOwner(btn1.getScene().getWindow());
@@ -111,6 +115,7 @@ public class Main extends Application {
 			PartieFinieController partieFinieController = loader.getController();
 			partieFinieController.init_data(model);
 			stage.setTitle("Partie Terminée");
+			stage.getIcons().add(new Image(img.class.getResourceAsStream("icon.png")));
 			stage.setScene(new Scene(root));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setResizable(false);
@@ -136,6 +141,7 @@ public class Main extends Application {
 				}
 			});
 			stage.setTitle("Paramètres du Yahtzee réseau");
+			stage.getIcons().add(new Image(img.class.getResourceAsStream("icon.png")));
 			stage.setScene(new Scene(root));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setResizable(false);

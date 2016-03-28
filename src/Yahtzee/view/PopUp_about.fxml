@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="183.0" prefWidth="508.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="10.0" layoutY="13.0" prefHeight="87.0" prefWidth="485.0">
          <children>
@@ -47,6 +47,8 @@
             </ImageView>
          </children>
       </HBox>
-      <Text layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeu du Yahtzee créé par : Nicolas Rossdeusch, Valentin Bonnal &amp; Cies" wrappingWidth="385.13671875" />
+      <Text layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeu du Yahtzee v2.0 développé par :" wrappingWidth="385.13671875" />
+      <Text layoutX="217.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yahtzee V2 : &#10;- Réseau : &#10;- IA : &#10;- Algo coups spéciaux : &#10;Yahtzee V1 : " textAlignment="RIGHT" wrappingWidth="137.13671875" />
+      <Text layoutX="354.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valentin Bonnal&#10;Valentin Bonnal&#10;Thomas Lehmann&#10;Nicolas Rossdeusch&#10;Nicolas Rossdeusch" wrappingWidth="146.13671875" />
    </children>
 </Pane>

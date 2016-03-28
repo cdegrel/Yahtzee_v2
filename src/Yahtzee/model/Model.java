@@ -130,6 +130,16 @@ public class Model {
 		return -1;
 	}
 
+	public int joueSpecialIA(String valeur, int[] des) {
+		try {
+			Method method = getClass().getDeclaredMethod(valeur, int[].class);
+			return (int) method.invoke(this, new Object[]{des});
+		} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
 	public int brelan(int t[]) {
 		int result = -1;
 		Arrays.sort(t);
@@ -178,13 +188,13 @@ public class Model {
 		int result = 0;
 		Arrays.sort(t);
 
-		for (int i = 0; i < t.length - 1; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (t[i] == t[i + 1]) {
-				t[i + 1] = 8;
+				int intermediaire = t[i];
+				System.arraycopy(t, i + 1, t, i, 4 - i);
+				t[4] = intermediaire;
 			}
 		}
-
-		Arrays.sort(t);
 
 		for (int i = 0; i < 2; i++) {
 			if (t[i] == t[i + 1] - 1 && t[i + 1] == t[i + 2] - 1 && t[i + 2] == t[i + 3] - 1) {

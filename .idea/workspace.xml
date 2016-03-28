@@ -7,19 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe6d3d03-0e20-4595-8973-3e86a119360a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Yahtzee.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/img/des_enclenches.png" afterPath="$PROJECT_DIR$/src/Yahtzee/img/des_enclenches.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/img/des_selectionnes.png" afterPath="$PROJECT_DIR$/src/Yahtzee/img/des_selectionnes.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/img/dés_status.psd" afterPath="$PROJECT_DIR$/src/Yahtzee/img/dés_status.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/model/TestModel.java" afterPath="$PROJECT_DIR$/Test/model/TestModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/Main.java" afterPath="$PROJECT_DIR$/src/Yahtzee/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/model/Model.java" afterPath="$PROJECT_DIR$/src/Yahtzee/model/Model.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/multi/JoueurThread.java" afterPath="$PROJECT_DIR$/src/Yahtzee/multi/JoueurThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/util/De.java" afterPath="$PROJECT_DIR$/src/Yahtzee/util/De.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/util/IA.java" afterPath="$PROJECT_DIR$/src/Yahtzee/util/IA.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/util/Joueur.java" afterPath="$PROJECT_DIR$/src/Yahtzee/util/Joueur.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/view/BasicApplication.css" afterPath="$PROJECT_DIR$/src/Yahtzee/view/BasicApplication.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/view/IATabController.java" afterPath="$PROJECT_DIR$/src/Yahtzee/view/IATabController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/view/InterfaceController.java" afterPath="$PROJECT_DIR$/src/Yahtzee/view/InterfaceController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/view/JoueurTabController.java" afterPath="$PROJECT_DIR$/src/Yahtzee/view/JoueurTabController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/view/PartieFinieController.java" afterPath="$PROJECT_DIR$/src/Yahtzee/view/PartieFinieController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/view/configServerController.java" afterPath="$PROJECT_DIR$/src/Yahtzee/view/configServerController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Yahtzee/view/PopUp_about.fxml" afterPath="$PROJECT_DIR$/src/Yahtzee/view/PopUp_about.fxml" />
     </list>
     <ignored path="Yahtzee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,9 +35,12 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Yahtzee$TestModel.coverage" NAME="TestModel Coverage Results" MODIFIED="1458805914511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Yahtzee$TestModel.coverage" NAME="TestModel Coverage Results" MODIFIED="1459198093944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>model.*</FILTER>
       <FILTER>Yahtzee.model.Model</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Yahtzee$Main.coverage" NAME="Main Coverage Results" MODIFIED="1459196849877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Yahtzee.*</FILTER>
     </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -50,8 +55,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Yahtzee/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+            <state relative-caret-position="160">
+              <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -77,7 +82,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Test/model/TestModel.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/img/img.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Yahtzee/view/TabIA.fxml" />
@@ -92,20 +96,22 @@
         <option value="$PROJECT_DIR$/src/Yahtzee/multi/JoueurClientThread.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/view/PopUp_configServer.fxml" />
         <option value="$PROJECT_DIR$/src/Yahtzee/view/Interface.fxml" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/util/De.java" />
+        <option value="$PROJECT_DIR$/Test/model/TestModel.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/view/TempoThread.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/Main.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/model/Model.java" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/view/BasicApplication.css" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/util/De.java" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/view/PartieFinieController.java" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/view/JoueurTabController.java" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/util/Joueur.java" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/view/IATabController.java" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/view/configServerController.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/multi/Server.java" />
-        <option value="$PROJECT_DIR$/src/Yahtzee/multi/ServerThread.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/multi/JoueurThread.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/multi/ServerThread.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/util/IA.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/util/Joueur.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/view/configServerController.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/view/IATabController.java" />
         <option value="$PROJECT_DIR$/src/Yahtzee/view/InterfaceController.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/view/JoueurTabController.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/view/PartieFinieController.java" />
+        <option value="$PROJECT_DIR$/src/Yahtzee/view/BasicApplication.css" />
       </list>
     </option>
   </component>
@@ -132,106 +138,28 @@
             <id />
           </State>
           <State>
-            <id>Android</id>
-          </State>
-          <State>
-            <id>Android Lint</id>
-          </State>
-          <State>
-            <id>CSS</id>
-          </State>
-          <State>
             <id>Class structureJava</id>
           </State>
           <State>
-            <id>Code style issuesJava</id>
-          </State>
-          <State>
-            <id>Code stylePhp Inspections (EA Extended)PHP</id>
-          </State>
-          <State>
-            <id>CoffeeScript</id>
-          </State>
-          <State>
-            <id>Concurrency annotation issuesJava</id>
-          </State>
-          <State>
-            <id>Control flow issuesJavaScript</id>
-          </State>
-          <State>
-            <id>Data flow issuesGroovy</id>
-          </State>
-          <State>
-            <id>Data flow issuesJava</id>
-          </State>
-          <State>
-            <id>Declaration redundancyGroovy</id>
-          </State>
-          <State>
-            <id>Declaration redundancyJava</id>
-          </State>
-          <State>
-            <id>Error handlingGroovy</id>
-          </State>
-          <State>
-            <id>Error handlingJava</id>
-          </State>
-          <State>
-            <id>Error handlingJavaScript</id>
-          </State>
-          <State>
-            <id>General</id>
-          </State>
-          <State>
-            <id>GeneralCoffeeScript</id>
-          </State>
-          <State>
-            <id>GeneralJavaScript</id>
-          </State>
-          <State>
-            <id>Groovy</id>
-          </State>
-          <State>
-            <id>Ignore</id>
-          </State>
-          <State>
-            <id>ImportsJava</id>
+            <id>GeneralPHP</id>
           </State>
           <State>
             <id>Inheritance issuesJava</id>
           </State>
           <State>
-            <id>Initialization issuesJava</id>
-          </State>
-          <State>
-            <id>Internationalization issuesJava</id>
-          </State>
-          <State>
-            <id>JUnit issuesJava</id>
-          </State>
-          <State>
             <id>Java</id>
           </State>
           <State>
-            <id>JavaFX</id>
+            <id>Java language level issuesJava</id>
           </State>
           <State>
-            <id>JavaScript</id>
+            <id>Java language level migration aidsJava</id>
           </State>
           <State>
             <id>Javadoc issuesJava</id>
           </State>
           <State>
-            <id>Kotlin</id>
-          </State>
-          <State>
-            <id>Logging issuesJava</id>
-          </State>
-          <State>
-            <id>Manifest</id>
-          </State>
-          <State>
-            <id>Memory issuesJava</id>
+            <id>Modularization issuesJava</id>
           </State>
           <State>
             <id>Numeric issuesJava</id>
@@ -240,71 +168,9 @@
             <id>PHP</id>
           </State>
           <State>
-            <id>Php Inspections (EA Extended)PHP</id>
-          </State>
-          <State>
-            <id>Portability issuesJava</id>
-          </State>
-          <State>
-            <id>Probable bugsJava</id>
-          </State>
-          <State>
-            <id>Probable bugsPHP</id>
-          </State>
-          <State>
-            <id>Properties Files</id>
-          </State>
-          <State>
             <id>Python</id>
           </State>
-          <State>
-            <id>RELAX NG</id>
-          </State>
-          <State>
-            <id>Resource management issuesJava</id>
-          </State>
-          <State>
-            <id>SQL</id>
-          </State>
-          <State>
-            <id>Security issuesJava</id>
-          </State>
-          <State>
-            <id>Serialization issuesJava</id>
-          </State>
-          <State>
-            <id>Spelling</id>
-          </State>
-          <State>
-            <id>Threading issuesJava</id>
-          </State>
-          <State>
-            <id>UI Form Problems</id>
-          </State>
-          <State>
-            <id>UnusedPHP</id>
-          </State>
-          <State>
-            <id>UnusedPhp Inspections (EA Extended)PHP</id>
-          </State>
-          <State>
-            <id>Visibility issuesJava</id>
-          </State>
-          <State>
-            <id>XML</id>
-          </State>
-          <State>
-            <id>XPath</id>
-          </State>
-          <State>
-            <id>XSLT</id>
-          </State>
         </expanded-state>
-        <selected-state>
-          <State>
-            <id>Android</id>
-          </State>
-        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -333,7 +199,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Problems" />
         <subPane subId="Project Files">
@@ -400,6 +265,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Yahtzee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Yahtzee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Yahtzee" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -539,31 +422,50 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Desktop/Yahtzee_IA" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Desktop/BasicApplication.css" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/sdk1" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="SearchEverywhereHistoryKey" value="gett&#9;ACTION&#9;GenerateGetterAndSetter&#10;get&#9;ACTION&#9;GenerateGetter&#10;histo&#9;ACTION&#9;LocalHistory.ShowHistory&#10;sett&#9;ACTION&#9;GenerateSetter&#10;set&#9;ACTION&#9;GenerateSetter" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="304" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="304" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="304" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="978" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="304" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="303" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="304" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="979" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../Desktop/BasicApplication.css" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Yahtzee.server" />
-      <recent name="Yahtzee.view" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Mes Documents\Travail\Programmation\Yahtzee\src\Yahtzee\img" />
+      <recent name="D:\Mes Documents\Travail\Programmation\Yahtzee\src\Yahtzee\view" />
+      <recent name="D:\Mes Documents\Desktop\Yahtzee_v2\src\Yahtzee\view" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Yahtzee.view" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Mes Documents\Travail\Programmation\Yahtzee\src\Yahtzee\view" />
-      <recent name="D:\Mes Documents\Desktop\Yahtzee_v2\src\Yahtzee\view" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Yahtzee.server" />
+      <recent name="Yahtzee.view" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -1071,8 +973,8 @@
     <recent_temporary>
       <list size="3">
         <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestModel" />
-        <item index="2" class="java.lang.String" itemvalue="JAR Application.Yahtzee.jar" />
+        <item index="1" class="java.lang.String" itemvalue="JAR Application.Yahtzee.jar" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestModel" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
@@ -1113,35 +1015,45 @@
       <workItem from="1458823742759" duration="2998000" />
       <workItem from="1458833755558" duration="73000" />
       <workItem from="1458840245248" duration="8246000" />
-      <workItem from="1458981285176" duration="16729000" />
+      <workItem from="1458981285176" duration="27459000" />
+      <workItem from="1459183523405" duration="17173000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestModel - 2016.02.24 at 23h 11m 04s.xml">
-      <configuration name="TestModel" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestModel - 2016.02.24 at 23h 13m 47s.xml">
-      <configuration name="TestModel" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestModel - 2016.02.24 at 23h 13m 54s.xml">
-      <configuration name="TestModel" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestModel - 2016.02.24 at 23h 14m 13s.xml">
-      <configuration name="TestModel" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestModel - 2016.02.24 at 23h 15m 39s.xml">
-      <configuration name="TestModel" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestModel - 2016.03.24 at 08h 51m 56s.xml">
-      <configuration name="TestModel" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestModel - 2016.03.24 at 13h 56m 14s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.28 at 22h 27m 56s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.28 at 22h 30m 16s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.28 at 22h 31m 34s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.28 at 22h 33m 26s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.28 at 22h 46m 02s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.28 at 22h 48m 15s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.28 at 22h 52m 17s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.29 at 00h 36m 46s.xml">
+      <configuration name="TestModel" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestModel - 2016.03.29 at 00h 38m 39s.xml">
       <configuration name="TestModel" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138315000" />
+    <option name="totallyTimeSpent" value="166218000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -1154,25 +1066,25 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3465447" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29471543" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48272356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35060975" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1199,50 +1111,15 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="29" />
+      <option name="time" value="31" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="joueurList" language="JAVA" custom="" />
-        <watch expression="joueurs" language="JAVA" custom="" />
-        <watch expression="model.joueurs.get(0).Sendlabels_somme" language="JAVA" custom="" />
-      </configuration>
-    </watches-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/model/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="28" column="89" selection-start-line="28" selection-start-column="89" selection-end-line="28" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/JoueurThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/configServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/ServerThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1345,42 +1222,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/img/img.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/TabJoueur.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/TabIA.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="230" selection-start-line="12" selection-start-column="230" selection-end-line="12" selection-end-column="230" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/PopUp_partieFinie.fxml">
@@ -1486,123 +1327,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test/model/TestModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/PartieFinieController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/JoueurTabController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="24" column="75" selection-start-line="24" selection-start-column="75" selection-end-line="24" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/util/Joueur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/IATabController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="72" column="66" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/configServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="53" column="92" selection-start-line="53" selection-start-column="92" selection-end-line="53" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/BasicApplication.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="1" column="80" selection-start-line="1" selection-start-column="80" selection-end-line="1" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="97" column="58" selection-start-line="97" selection-start-column="58" selection-end-line="97" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/ServerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/JoueurThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="120" column="68" selection-start-line="120" selection-start-column="68" selection-end-line="120" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/util/IA.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#391#448#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/util/De.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding>
-            <element signature="e#254#255#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/model/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/Interface.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -1614,18 +1338,213 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/InterfaceController.java">
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/TabJoueur.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="78" column="27" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/TabIA.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/src.zip!/java/io/PrintStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="805" column="0" selection-start-line="805" selection-start-column="0" selection-end-line="805" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="1645" column="0" selection-start-line="1645" selection-start-column="0" selection-end-line="1645" selection-end-column="0" />
+          <folding>
+            <element signature="e#66534#66535#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/javafx-src.zip!/javafx/geometry/Rectangle2D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/TempoThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="485" column="30" selection-start-line="485" selection-start-column="30" selection-end-line="485" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/img/img.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/model/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1630#1631#0" expanded="false" />
+            <element signature="e#1649#1650#0" expanded="false" />
+            <element signature="e#1840#1841#0" expanded="false" />
+            <element signature="e#1878#1879#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/JoueurThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+          <folding>
+            <element signature="e#1503#1626#0" expanded="true" />
+            <element signature="e#1625#1626#0" expanded="true" />
+            <element signature="e#1651#1864#0" expanded="true" />
+            <element signature="e#1863#1864#0" expanded="true" />
+            <element signature="e#2015#2270#0" expanded="true" />
+            <element signature="e#2269#2270#0" expanded="true" />
+            <element signature="e#3020#3300#0" expanded="true" />
+            <element signature="e#3299#3300#0" expanded="true" />
+            <element signature="e#3549#4802#0" expanded="true" />
+            <element signature="e#4801#4802#0" expanded="true" />
+            <element signature="e#4903#5151#0" expanded="true" />
+            <element signature="e#5150#5151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/multi/ServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/util/De.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/util/IA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/util/Joueur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/configServerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/IATabController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/InterfaceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/JoueurTabController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/PartieFinieController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/model/TestModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Yahtzee/view/BasicApplication.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Yahtzee/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+        <state relative-caret-position="160">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1700,7 +1619,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
